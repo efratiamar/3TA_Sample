@@ -15,7 +15,6 @@ namespace DS
         public static List<Lecturer> listLecturers;
         public static List<LecturerInCourse> listLectInCourses;
         public static List<StudentInCourse> listStudInCourses;
-        public static object listDOPerson;
 
         static DataSource()
         {
@@ -23,7 +22,7 @@ namespace DS
         }
         static void CreateAllLists()
         {
-            listDOPerson = new List<Person>
+            listPersons = new List<Person>
             {
                 new Person
                 {

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="txtStudentID" HorizontalAlignment="Left" Height="23" Margin="126,306,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="142"/>
+        <TextBox x:Name="txtStudentID" HorizontalAlignment="Left" Height="23" Margin="126,306,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="142"/>
         <Label Content="StudentID:" HorizontalAlignment="Left" Margin="37,306,0,0" VerticalAlignment="Top" Height="23" Width="79"/>
         <Button x:Name="btGetStudentByID" Content="Get Student By ID" HorizontalAlignment="Left" Height="23" Margin="307,306,0,0" VerticalAlignment="Top" Width="191" Click="btGetStudentByID_Click"/>
         <Button x:Name="btnGetAllPersonsByPerSta" Content="Get All Persons By Personal Status" HorizontalAlignment="Left" Margin="490,121,0,0" VerticalAlignment="Top" Width="208" Height="47" Click="btnGetAllPersonsByPerSta_Click"/>

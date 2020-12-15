@@ -45,8 +45,14 @@ namespace DL
 
         public Person GetPerson(int id)
         {
-            return DataSource.listPersons.Find(p => p.ID == id);  //??? already clone ???
-            //if not exist return null, or throw exception ...
+            Person per =  DataSource.listPersons.Find(p => p.ID == id);  //??? already cloned ???
+
+            if (per != null)
+                return per.Clone();
+            else
+                throw new DO.BadPersonIdException(id, $"bad person id: {id}");
+
+            //if not exist,throw exception ...
         }
         public IEnumerable<Person> GetAllPersons()
         {

@@ -37,7 +37,9 @@ namespace PL_Person_WPF
             {
                 id = int.Parse(txtStudentID.Text);
 
-                bl.GetStudent(id);
+                BO.Student studentBO = bl.GetStudent(id);
+                MessageBox.Show(studentBO.ToString());
+
             }
             catch (FormatException)
             {

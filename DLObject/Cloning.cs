@@ -8,14 +8,14 @@ namespace DL
     {
         //first way - No Bonus
         //do it for each DO entity
-        internal static DO.Person Clone(this DO.Person original)
-        {
-            DO.Person target = new DO.Person();
-            target.ID = original.ID;
-            target.Name = target.Name;
-            //...
-            return target;
-        }
+        //internal static DO.Person Clone(this DO.Person original)
+        //{
+        //    DO.Person target = new DO.Person();
+        //    target.ID = original.ID;
+        //    target.Name = target.Name;
+        //    //...
+        //    return target;
+        //}
 
         //second way - With Bonus
         //cretae empty interface named IClonable in the DLAPI project
@@ -34,12 +34,18 @@ namespace DL
         //third way - With Bonus
         internal static T Clone<T>(this T original)
         {
-            T target = (T)Activator.CreateInstance(original.GetType());
+            T copyToObject = (T)Activator.CreateInstance(original.GetType());
             //...
-            //foreach (PropertyInfo item in original.GetType().GetProperties())
-            //    target.GetType().GetProperty(item.Name).SetValue(????, item.GetValue(original, null));
+            //foreach (PropertyInfo sourcePropertyInfo in original.GetType().GetProperties())
+            //    copyToObject.GetType().GetProperty(sourcePropertyInfo.Name).SetValue(????, sourcePropertyInfo.GetValue(original, null));
+            foreach (PropertyInfo sourcePropertyInfo in original.GetType().GetProperties())
+            {
+                PropertyInfo destPropertyInfo = original.GetType().GetProperty(sourcePropertyInfo.Name);
 
-            return target;
+                destPropertyInfo.SetValue(copyToObject, sourcePropertyInfo.GetValue(original, null), null);
+            }
+
+            return copyToObject;
         }
 
 
