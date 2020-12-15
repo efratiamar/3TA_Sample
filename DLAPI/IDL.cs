@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+
+using DO;
+
+namespace DLAPI
+{
+    //CRUD Logic
+    public interface IDL
+    {
+        #region Person
+        IEnumerable<Person> GetAllPersons();
+        IEnumerable<Person> GetAllPersonsBy(Predicate<Person> predicate);
+        Person GetPerson(int id);        
+        void AddPerson(Person p);
+        void UpdatePerson(Person person);
+        void UpdatePerson(int id, Action<Person> update); //method that knows to updt specific fields in Person
+        void DeletePerson(int id);
+        #endregion
+
+        #region Student
+        Student GetStudent(int id);
+        #endregion
+
+        #region StudentInCourse
+        IEnumerable<StudentInCourse> GetStudentInCourseList(Predicate<StudentInCourse> predicate);
+        #endregion
+
+        #region Course
+        Course GetCourse(int id);
+        #endregion
+    }
+}
