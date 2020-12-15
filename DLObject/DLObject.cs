@@ -64,7 +64,14 @@ namespace DL
         }
         public Student GetStudent(int id)
         {
-            throw new NotImplementedException();
+            Student stu = DataSource.listStudents.Find(p => p.ID == id);  //??? already cloned ???
+
+            if (stu != null)
+                return stu.Clone();
+            else
+                throw new DO.BadPersonIdException(id, $"bad student id: {id}");
+
+            //if not exist,throw exception ...
         }
 
         public IEnumerable<StudentInCourse> GetStudentInCourseList(Predicate<StudentInCourse> predicate)

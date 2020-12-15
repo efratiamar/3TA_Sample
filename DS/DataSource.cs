@@ -49,7 +49,7 @@ namespace DS
                 new Person
                 {
                     Name = "Roni",
-                    ID = 23,
+                    ID = 15,
                     Street = " Dayan",
                     HouseNumber = 33,
                     City = "Eilat",
@@ -57,6 +57,53 @@ namespace DS
                     BirthDate = DateTime.Parse("13.10.95")
                 }
             };
+
+
+            listStudents = new List<Student>
+            {
+                new Student
+                {
+                    ID = 36,
+                    StartYear = 2018,
+                    Status = StudentStatus.ACTIVE,
+                    Graduation = StudentGraduate.BSC
+                },
+                new Student
+                {
+                    ID = 23,
+                    StartYear = 2017,
+                    Status = StudentStatus.FINISHED,
+                    Graduation = StudentGraduate.PHD
+                }
+            };
+
+            listCourses = new List<Course>
+            {
+                new Course
+                {
+                    ID = 1,
+                    Number = 15333,
+                    Name = "Mini",
+                    LectureHours = 3,
+                    PracticeHours = 1,
+                    CreditPoint = 3,
+                    Year = 2010,
+                    Semester = Semester.A
+                }
+            };
+
+            listStudInCourses = new List<StudentInCourse>
+            {
+                new StudentInCourse
+                {
+                    CourseId = 1,
+                    Grade = 100,
+                    PersonId = 36
+                }
+            };
+
+
         }
     }
 }
+
