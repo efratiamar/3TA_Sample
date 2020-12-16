@@ -23,7 +23,7 @@ namespace DL
         //Implement IDL methods, CRUD
         public Person GetPerson(int id)
         {
-            Person per = DataSource.listPersons.Find(p => p.ID == id);  //??? already cloned ???
+            Person per = DataSource.listPersons.Find(p => p.ID == id); 
 
             if (per != null)
                 return per.Clone();
@@ -34,7 +34,8 @@ namespace DL
         }
         public IEnumerable<Person> GetAllPersons()
         {
-            return DataSource.listPersons;
+            return from person in DataSource.listPersons
+                   select person.Clone();
         }
         public IEnumerable<Person> GetAllPersonsBy(Predicate<Person> predicate)
         {
@@ -65,7 +66,7 @@ namespace DL
 
         public Student GetStudent(int id)
         {
-            Student stu = DataSource.listStudents.Find(p => p.ID == id);  //??? already cloned ???
+            Student stu = DataSource.listStudents.Find(p => p.ID == id); 
 
             if (stu != null)
                 return stu.Clone();
@@ -77,12 +78,19 @@ namespace DL
 
         public IEnumerable<StudentInCourse> GetStudentInCourseList(Predicate<StudentInCourse> predicate)
         {
-            return DataSource.listStudInCourses.FindAll(predicate);  //??? already cloned ???
+            // produces final list instead of deferred query and does not allow proper cloning:
+            // return DataSource.listStudInCourses.FindAll(predicate);
+            // Returns deferred query:
+            //return DataSource.listStudInCourses.Where(sic => predicate(sic)).Select(sic => sic.Clone());
+            // or:
+            return from sic in DataSource.listStudInCourses
+                   where predicate(sic)
+                   select sic.Clone();
         }
 
         public Course GetCourse(int id)
         {
-            throw new NotImplementedException();
+            return DataSource.listCourses.Find(c => c.ID == id).Clone();
         }
     }
 }

@@ -31,13 +31,12 @@ namespace DL
         //    return target;
         //}
 
-        //third way - With Bonus
+        //third way - With Bonus // generic shallowed copy, properties only
         internal static T Clone<T>(this T original)
         {
             T copyToObject = (T)Activator.CreateInstance(original.GetType());
             //...
-            //foreach (PropertyInfo sourcePropertyInfo in original.GetType().GetProperties())
-            //    copyToObject.GetType().GetProperty(sourcePropertyInfo.Name).SetValue(????, sourcePropertyInfo.GetValue(original, null));
+            
             foreach (PropertyInfo sourcePropertyInfo in original.GetType().GetProperties())
             {
                 PropertyInfo destPropertyInfo = original.GetType().GetProperty(sourcePropertyInfo.Name);

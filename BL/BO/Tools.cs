@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -9,11 +9,17 @@ namespace BO
 {
     public static class Tools
     {
-        public static string ToStringProperty<T>(this T t)
+        public static string ToStringProperty<T>(this T t, string suffix = "")
         {
             string str = "";
-            foreach (PropertyInfo item in t.GetType().GetProperties())
-                str += "\n" + item.Name + ": " + item.GetValue(t, null);
+            foreach (PropertyInfo prop in t.GetType().GetProperties())
+                if (prop.PropertyType is IEnumerable)
+                {
+                    foreach (var item in (IEnumerable)prop.GetValue(t, null))
+                        str += item.ToStringProperty("   ");
+                }
+                else
+                    str += "\n" + suffix + prop.Name + ": " + prop.GetValue(t, null);
             return str;
         }
     }

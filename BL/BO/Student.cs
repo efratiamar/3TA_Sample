@@ -13,9 +13,6 @@ namespace BO
         public StudentStatus Status { get; set; }
         public StudentGraduate Graduation { get; set; }
         public IEnumerable<StudentCourse> listOfCourses {get;set;}
-        public override string ToString()
-        {
-            return this.ToStringProperty();
-        }
+        public override string ToString() => this.ToStringProperty();
     }
 }

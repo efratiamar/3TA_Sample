@@ -62,5 +62,9 @@
       <Name>DLAPI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\BO.Student.datasource" />
+    <None Include="Properties\DataSources\BO.StudentCourse.datasource" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -18,5 +18,6 @@ namespace BO
         public int? Grade { get; set; }
         public int Year { get; set; }
         public Semester Semester { get; set; }
+        public override string ToString() => this.ToStringProperty();
     }
 }

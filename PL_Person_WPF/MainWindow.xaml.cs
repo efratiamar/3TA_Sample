@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,8 @@ namespace PL_Person_WPF
     public partial class MainWindow : Window
     {
         IBL bl;
+        BO.Student studentBO;
+        ObservableCollection<BO.StudentCourse> courses;
         public MainWindow()
         {
             InitializeComponent();
@@ -37,9 +40,13 @@ namespace PL_Person_WPF
             {
                 id = int.Parse(txtStudentID.Text);
 
-                BO.Student studentBO = bl.GetStudent(id);
-                MessageBox.Show(studentBO.ToString());
+                studentBO = bl.GetStudent(id);
+                grid1.DataContext = studentBO;
+                
+                courses = new ObservableCollection<BO.StudentCourse>(studentBO.listOfCourses);
+                studentCourseDataGrid.DataContext = courses;
 
+                MessageBox.Show(studentBO.ToString(), "Student");
             }
             catch (FormatException)
             {
@@ -55,5 +62,7 @@ namespace PL_Person_WPF
         {
 
         }
+
+
     }
 }

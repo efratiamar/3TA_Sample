@@ -9,9 +9,6 @@ namespace BO
     public class Lecturer : Person
     {
         IEnumerable<LecturerCourse> listOfCourses;
-        public override string ToString()
-        {
-            return this.ToStringProperty();
-        }
+        public override string ToString() => this.ToStringProperty();
     }
 }

@@ -82,8 +82,8 @@ namespace DS
                 new Course
                 {
                     ID = 1,
-                    Number = 15333,
-                    Name = "Mini",
+                    Number = 153007,
+                    Name = "MiniProject with Windows Systems",
                     LectureHours = 3,
                     PracticeHours = 1,
                     CreditPoint = 3,
