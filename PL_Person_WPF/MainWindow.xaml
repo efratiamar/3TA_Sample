@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:PL_Person_WPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL_Person_WPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="490" Width="800">
 
 
     <Grid>
         <TextBox x:Name="txtStudentID" HorizontalAlignment="Left" Height="24" Margin="116,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="142"/>
         <Label Content="StudentID:" HorizontalAlignment="Left" Margin="27,28,0,0" VerticalAlignment="Top" Height="24" Width="79"/>
-        <Button x:Name="btGetStudentByID" Content="Get Student By ID" HorizontalAlignment="Left" Height="24" Margin="297,28,0,0" VerticalAlignment="Top" Width="191" Click="btGetStudentByID_Click"/>
-        <Button x:Name="btnGetAllPersonsByPerSta" Content="Get All Persons By Personal Status" HorizontalAlignment="Left" Margin="530,28,0,0" VerticalAlignment="Top" Width="208" Height="47" Click="btnGetAllPersonsByPerSta_Click"/>
+        <Button x:Name="btGetStudentByID" Content="Get Student By ID" HorizontalAlignment="Left" Height="24" Margin="365,28,0,0" VerticalAlignment="Top" Width="191" Click="btGetStudentByID_Click"/>
+        <Button x:Name="btnGetAllPersonsByPerSta" Content="Get All Persons By Personal Status" HorizontalAlignment="Left" Margin="365,363,0,0" VerticalAlignment="Top" Width="208" Height="47" Click="btnGetAllPersonsByPerSta_Click"/>
 
         <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="52,90,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>

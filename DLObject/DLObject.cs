@@ -29,8 +29,6 @@ namespace DL
                 return per.Clone();
             else
                 throw new DO.BadPersonIdException(id, $"bad person id: {id}");
-
-            //if not exist,throw exception ...
         }
         public IEnumerable<Person> GetAllPersons()
         {
@@ -44,7 +42,7 @@ namespace DL
         public void AddPerson(Person p)
         {
             DataSource.listPersons.Add(p);
-            //if add failed throw suitible Exception ...
+            //test id is unique, otherwise throw suitible Exception ...
         }
 
         public void DeletePerson(int id)
@@ -72,17 +70,20 @@ namespace DL
                 return stu.Clone();
             else
                 throw new DO.BadPersonIdException(id, $"bad student id: {id}");
-
-            //if not exist,throw exception ...
         }
 
         public IEnumerable<StudentInCourse> GetStudentInCourseList(Predicate<StudentInCourse> predicate)
         {
-            // produces final list instead of deferred query and does not allow proper cloning:
+            //option A - not good!!! 
+            //produces final list instead of deferred query and does not allow proper cloning:
             // return DataSource.listStudInCourses.FindAll(predicate);
-            // Returns deferred query:
+
+            // option B - ok!!
+            //Returns deferred query + clone:
             //return DataSource.listStudInCourses.Where(sic => predicate(sic)).Select(sic => sic.Clone());
-            // or:
+
+            // option c - ok!!
+            //Returns deferred query + clone:
             return from sic in DataSource.listStudInCourses
                    where predicate(sic)
                    select sic.Clone();

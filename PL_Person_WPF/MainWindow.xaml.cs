@@ -42,9 +42,10 @@ namespace PL_Person_WPF
 
                 studentBO = bl.GetStudent(id);
                 grid1.DataContext = studentBO;
-                
-                courses = new ObservableCollection<BO.StudentCourse>(studentBO.listOfCourses);
-                studentCourseDataGrid.DataContext = courses;
+
+                //courses = new ObservableCollection<BO.StudentCourse>(studentBO.listOfCourses);
+                //studentCourseDataGrid.DataContext = courses;
+                studentCourseDataGrid.DataContext = studentBO.listOfCourses;
 
                 MessageBox.Show(studentBO.ToString(), "Student");
             }
