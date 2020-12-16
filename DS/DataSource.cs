@@ -18,9 +18,9 @@ namespace DS
 
         static DataSource()
         {
-            CreateAllLists();
+            InitAllLists();
         }
-        static void CreateAllLists()
+        static void InitAllLists()
         {
             listPersons = new List<Person>
             {

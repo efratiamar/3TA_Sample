@@ -10,8 +10,9 @@ using DS;
 
 namespace DL
 {
-    //will be sealed class //internal ????
-    public class DLObject : IDL
+    //will be sealed class ???
+    //internal !!!
+    class DLObject : IDL
     {
         #region singelton
         static readonly DLObject instance = new DLObject();
@@ -21,6 +22,25 @@ namespace DL
         #endregion
 
         //Implement IDL methods, CRUD
+        public Person GetPerson(int id)
+        {
+            Person per = DataSource.listPersons.Find(p => p.ID == id);  //??? already cloned ???
+
+            if (per != null)
+                return per.Clone();
+            else
+                throw new DO.BadPersonIdException(id, $"bad person id: {id}");
+
+            //if not exist,throw exception ...
+        }
+        public IEnumerable<Person> GetAllPersons()
+        {
+            return DataSource.listPersons;
+        }
+        public IEnumerable<Person> GetAllPersonsBy(Predicate<Person> predicate)
+        {
+            throw new NotImplementedException();
+        }
         public void AddPerson(Person p)
         {
             DataSource.listPersons.Add(p);
@@ -43,25 +63,7 @@ namespace DL
         }
 
 
-        public Person GetPerson(int id)
-        {
-            Person per =  DataSource.listPersons.Find(p => p.ID == id);  //??? already cloned ???
 
-            if (per != null)
-                return per.Clone();
-            else
-                throw new DO.BadPersonIdException(id, $"bad person id: {id}");
-
-            //if not exist,throw exception ...
-        }
-        public IEnumerable<Person> GetAllPersons()
-        {
-            return DataSource.listPersons;
-        }
-        public IEnumerable<Person> GetAllPersonsBy(Predicate<Person> predicate)
-        {
-            throw new NotImplementedException();
-        }
         public Student GetStudent(int id)
         {
             Student stu = DataSource.listStudents.Find(p => p.ID == id);  //??? already cloned ???

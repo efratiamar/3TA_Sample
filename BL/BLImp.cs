@@ -5,15 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using DLAPI;
 using BLAPI;
-using BO;
 
 namespace BL
 {
     class BLImp : IBL //internal
     {
         IDL dl = DLFactory.GetDL();
-
-
 
         public BO.Student GetStudent(int id)
         {
@@ -55,11 +52,11 @@ namespace BL
         }
 
 
-        public IEnumerable<Student> GetAllStudents()
+        public IEnumerable<BO.Student> GetAllStudents()
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<Student> GetStudentsBy(Predicate<Student> predicate)
+        public IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate)
         {
             throw new NotImplementedException();
         }
