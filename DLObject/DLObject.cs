@@ -10,9 +10,8 @@ using DS;
 
 namespace DL
 {
-    //will be sealed class ???
-    //internal !!!
-    class DLObject : IDL
+    sealed class DLObject : IDL    //internal
+
     {
         #region singelton
         static readonly DLObject instance = new DLObject();

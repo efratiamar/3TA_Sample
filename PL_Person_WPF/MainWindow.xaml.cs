@@ -27,7 +27,7 @@ namespace PL_Person_WPF
         {
             InitializeComponent();
 
-            bl = BLFactory.GetBL("test");
+            bl = BLFactory.GetBL("1");
         }
 
         private void btGetStudentByID_Click(object sender, RoutedEventArgs e)
