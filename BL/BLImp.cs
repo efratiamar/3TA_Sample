@@ -43,15 +43,16 @@ namespace BL
 
             studentBO.ListOfCourses = from sic in dl.GetStudentInCourseList(sic => sic.PersonId == id)
                                       let course = dl.GetCourse(sic.CourseId)
-                                      select new BO.StudentCourse()
-                                      {
-                                          ID = course.ID,
-                                          Number = course.Number,
-                                          Name = course.Name,
-                                          Year = course.Year,
-                                          Semester = (BO.Semester)(int)course.Semester,
-                                          Grade = sic.Grade
-                                      };
+                                      select course.CloneToStudentCourse(sic);
+                                      //new BO.StudentCourse()
+                                      //{
+                                      //    ID = course.ID,
+                                      //    Number = course.Number,
+                                      //    Name = course.Name,
+                                      //    Year = course.Year,
+                                      //    Semester = (BO.Semester)(int)course.Semester,
+                                      //    Grade = sic.Grade
+                                      //};
             return studentBO;
         }
 

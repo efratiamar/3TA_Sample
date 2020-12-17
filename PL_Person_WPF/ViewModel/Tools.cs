@@ -22,6 +22,8 @@ namespace ViewModel
                     propTo.SetValue(to, value);
                 else
                 {
+                    if (value == null)
+                        continue;
                     var target = propTo.GetValue(to, null);
                     //if (target == null)
                     //    target = Activator.CreateInstance(propTo.PropertyType);

@@ -28,10 +28,11 @@ namespace BL
             from.Clone(to);
             return to;
         }
-        public static BO.StudentCourse CloneToStudentCourse(this DO.Course course)
+        public static BO.StudentCourse CloneToStudentCourse(this DO.Course course, DO.StudentInCourse sic)
         {
             BO.StudentCourse result = (BO.StudentCourse)course.CloneNew(typeof(BO.StudentCourse));
             // propertys' names changed? copy them here...
+            result.Grade = sic.Grade;
             return result;
         }
     }
