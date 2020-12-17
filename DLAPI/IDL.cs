@@ -22,6 +22,9 @@ namespace DLAPI
         Student GetStudent(int id);
         IEnumerable<object> GetStudentIDs(Func<int, string, object> generate);
         void AddStudent(Student student);
+        void UpdateStudent(Student student);
+        void UpdateStudent(int id, Action<Student> update); //method that knows to updt specific fields in Student
+        void DeleteStudent(int id); // removes only Student, does not remove the appropriate Person...
         #endregion
 
         #region StudentInCourse

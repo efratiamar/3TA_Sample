@@ -22,9 +22,10 @@ namespace DL
         #endregion
 
         //Implement IDL methods, CRUD
+        #region Person
         public Person GetPerson(int id)
         {
-            Person per = DataSource.ListPersons.Find(p => p.ID == id); 
+            Person per = DataSource.ListPersons.Find(p => p.ID == id);
 
             if (per != null)
                 return per.Clone();
@@ -61,7 +62,9 @@ namespace DL
         {
             throw new NotImplementedException();
         }
+        #endregion Person
 
+        #region Student
         public Student GetStudent(int id)
         {
             Student stu = DataSource.ListStudents.Find(p => p.ID != id);
@@ -85,6 +88,24 @@ namespace DL
                    select generate(student.ID, GetPerson(student.ID).Name);
         }
 
+
+        public void UpdateStudent(Student student)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateStudent(int id, Action<Student> update)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteStudent(int id)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion Student
+
+        #region StudentInCourse
         public IEnumerable<StudentInCourse> GetStudentInCourseList(Predicate<StudentInCourse> predicate)
         {
             //option A - not good!!! 
@@ -101,11 +122,13 @@ namespace DL
                    where predicate(sic)
                    select sic.Clone();
         }
+        #endregion StudentInCourse
 
+        #region Course
         public Course GetCourse(int id)
         {
             return DataSource.ListCourses.Find(c => c.ID == id).Clone();
         }
-
+        #endregion Course
     }
 }
