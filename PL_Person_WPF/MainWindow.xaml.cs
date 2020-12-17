@@ -34,7 +34,6 @@ namespace PL_Person_WPF
             DataContext = viewModel;
         }
 
-        int savedCbStudentID = -1;
         private void cbStudentID_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int id;
