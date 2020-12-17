@@ -15,53 +15,85 @@ namespace ViewModel
         IBL bl = BLFactory.GetBL("1");
 
         static readonly DependencyProperty StudentProperty = DependencyProperty.Register("Student", typeof(PO.Student), typeof(MainWindow));
-        static readonly DependencyProperty StudentIDsProperty = DependencyProperty.Register("StudentIDs", typeof(ObservableCollection<PO.ListedPerson>), typeof(MainWindow));
         public PO.Student Student { get => (PO.Student)GetValue(StudentProperty); set => SetValue(StudentProperty, value); }
+
+        static readonly DependencyProperty StudentIDsProperty = DependencyProperty.Register("StudentIDs", typeof(ObservableCollection<PO.ListedPerson>), typeof(MainWindow));
+        public ObservableCollection<PO.ListedPerson> StudentIDs { get => (ObservableCollection<PO.ListedPerson>)GetValue(StudentIDsProperty); set => SetValue(StudentIDsProperty, value); }
+
         public BO.Student StudentBO
         {
             set
             {
-                value.Clone(Student);
+                if (value == null)
+                    Student = new PO.Student();
+                else
+                    value.Clone(Student);
                 // update more properties in Student if needed... That is, properties that don't appear as is in studentBO...
             }
         }
 
-        public ObservableCollection<PO.ListedPerson> StudentIDs { get => (ObservableCollection<PO.ListedPerson>)GetValue(StudentIDsProperty); set => SetValue(StudentIDsProperty, value); }
-
         public MainWindow() => Reset();
 
+        BackgroundWorker getStudentWorker;
         internal void blGetStudent(int id)
         {
-            //StudentBO
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (object sender, DoWorkEventArgs args) =>
+            if (getStudentWorker != null)
+                getStudentWorker.CancelAsync();
+            getStudentWorker = new BackgroundWorker();
+            getStudentWorker.WorkerSupportsCancellation = true;
+            getStudentWorker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs args) =>
             {
-                args.Result = bl.GetStudent((int)args.Argument);
+                if (!((BackgroundWorker)sender).CancellationPending)
+                    StudentBO = (BO.Student)args.Result;
             };
-            worker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs args) => StudentBO = (BO.Student)args.Result;
-            StudentIDs = new ObservableCollection<PO.ListedPerson>();
-            worker.RunWorkerAsync(id);
+            getStudentWorker.DoWork += (object sender, DoWorkEventArgs args) =>
+            {
+                BackgroundWorker worker = (BackgroundWorker)sender;
+                object student = bl.GetStudent((int)args.Argument);
+                args.Result = worker.CancellationPending ? null : student;
+            };
+            getStudentWorker.RunWorkerAsync(id);
         }
 
         internal void Reset()
         {
+            if (getStudentWorker != null)
+            {
+                getStudentWorker.CancelAsync();
+                getStudentWorker = null;
+            }
+            if (getStudentIDsWorker != null)
+            {
+                getStudentIDsWorker.CancelAsync();
+                getStudentIDsWorker = null;
+            }
             Student = new PO.Student();
             blGetStudentIDs();
         }
 
+        BackgroundWorker getStudentIDsWorker;
         public void blGetStudentIDs()
         {
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (object sender, DoWorkEventArgs args) =>
+            getStudentIDsWorker = new BackgroundWorker();
+            getStudentIDsWorker.WorkerSupportsCancellation = true;
+            getStudentIDsWorker.WorkerReportsProgress = true;
+            getStudentIDsWorker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs args) => getStudentIDsWorker = null;
+            getStudentIDsWorker.ProgressChanged += (object sender, ProgressChangedEventArgs args) =>
             {
-                foreach (var item in bl.GetStudentIDs())
-                    worker.ReportProgress(0, item);
+                if (!((BackgroundWorker)sender).CancellationPending)
+                    StudentIDs.Add(new PO.ListedPerson() { Person = (BO.ListedPerson)args.UserState });
             };
-            worker.WorkerReportsProgress = true;
-            worker.ProgressChanged += (object sender, ProgressChangedEventArgs args) => StudentIDs.Add(new PO.ListedPerson() { Person = (BO.ListedPerson)args.UserState });
-            worker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs args) => { };
+            getStudentIDsWorker.DoWork += (object sender, DoWorkEventArgs args) =>
+            {
+                BackgroundWorker worker = (BackgroundWorker)sender;
+                foreach (var item in bl.GetStudentIDs())
+                {
+                    if (worker.CancellationPending) break;
+                    worker.ReportProgress(0, item);
+                }
+            };
             StudentIDs = new ObservableCollection<PO.ListedPerson>();
-            worker.RunWorkerAsync();
+            getStudentIDsWorker.RunWorkerAsync();
         }
     }
 }

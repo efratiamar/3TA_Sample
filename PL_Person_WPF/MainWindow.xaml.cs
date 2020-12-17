@@ -37,7 +37,9 @@ namespace PL_Person_WPF
         {
             int id;
 
-            if (cbStudentID.SelectedIndex < 0) return;
+            if (cbStudentID.SelectedIndex < 0)
+                return; 
+
             try
             {
                 id = (int)cbStudentID.SelectedValue;
@@ -49,8 +51,8 @@ namespace PL_Person_WPF
 
                 //cbStudentID.Text = ((PO.ListedPerson)cbStudentID.SelectedItem).Show;
                 //cbStudentID.IsDropDownOpen = false;
-                gridStudent.Visibility = Visibility.Visible;
-                btReset.IsEnabled = true;
+                //gridStudent.Visibility = Visibility.Visible;
+                //btReset.IsEnabled = true;
                 //MessageBox.Show(studentBO.ToString(), "Student");
             }
             catch (BO.BadStudentIdException ex)
@@ -94,11 +96,11 @@ namespace PL_Person_WPF
 
         private void btReset_Click(object sender, RoutedEventArgs e)
         {
-            btReset.IsEnabled = false;
-            cbStudentID.Text = "";
+            //cbStudentID.Text = "";
             cbStudentID.SelectedIndex = -1;
+            //btReset.IsEnabled = false;
+            //gridStudent.Visibility = Visibility.Hidden;
             viewModel.Reset();
-            gridStudent.Visibility = Visibility.Hidden;
         }
     }
 }
