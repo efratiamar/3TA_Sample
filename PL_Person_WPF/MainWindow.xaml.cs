@@ -23,13 +23,12 @@ namespace PL_Person_WPF
     /// </summary>
     partial class MainWindow : Window
     {
-        IBL bl = BLFactory.GetBL("1");
         public ViewModel.MainWindow viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
-            viewModel = new ViewModel.MainWindow(bl);
+            viewModel = new ViewModel.MainWindow();
             //viewModel.Reset();
             DataContext = viewModel;
         }
@@ -37,13 +36,12 @@ namespace PL_Person_WPF
         private void cbStudentID_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int id;
-            BO.Student studentBO;
 
             if (cbStudentID.SelectedIndex < 0) return;
             try
             {
                 id = (int)cbStudentID.SelectedValue;
-                viewModel.StudentBO = studentBO = bl.GetStudent(id);
+                viewModel.blGetStudent(id);
                 //gridStudent.DataContext = studentBO;
                 //courses = new ObservableCollection<BO.StudentCourse>(studentBO.listOfCourses);
                 //studentCourseDataGrid.DataContext = courses;

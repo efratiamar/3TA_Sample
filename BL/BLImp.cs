@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DLAPI;
 using BLAPI;
+using System.Threading;
 
 namespace BL
 {
@@ -41,16 +42,16 @@ namespace BL
             //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
 
             studentBO.ListOfCourses = from sic in dl.GetStudentInCourseList(sic => sic.PersonId == id)
-                                    let course = dl.GetCourse(sic.CourseId)
-                                    select new BO.StudentCourse()
-                                    {
-                                        ID = course.ID,
-                                        Number = course.Number,
-                                        Name = course.Name,
-                                        Year =  course.Year,
-                                        Semester = (BO.Semester)(int)course.Semester,
-                                        Grade = sic.Grade
-                                    };
+                                      let course = dl.GetCourse(sic.CourseId)
+                                      select new BO.StudentCourse()
+                                      {
+                                          ID = course.ID,
+                                          Number = course.Number,
+                                          Name = course.Name,
+                                          Year = course.Year,
+                                          Semester = (BO.Semester)(int)course.Semester,
+                                          Grade = sic.Grade
+                                      };
             return studentBO;
         }
 
@@ -67,7 +68,11 @@ namespace BL
 
         public IEnumerable<BO.ListedPerson> GetStudentIDs()
         {
-            return from item in dl.GetStudentIDs((id,name) => new BO.ListedPerson() { ID = id, Name = name })
+            return from item in dl.GetStudentIDs((id, name) =>
+                    {
+                        try { Thread.Sleep(5000); } catch (ThreadInterruptedException e) { }
+                        return new BO.ListedPerson() { ID = id, Name = name };
+                    })
                    let student = item as BO.ListedPerson
                    select student;
         }
