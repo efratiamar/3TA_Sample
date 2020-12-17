@@ -4,10 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
-
-using BLAPI;
-
-namespace PL_Person_WPF
+namespace PL.WPF.Person
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
