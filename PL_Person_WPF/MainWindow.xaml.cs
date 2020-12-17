@@ -101,6 +101,7 @@ namespace PL_Person_WPF
             cbStudentID.Text = "";
             cbStudentID.SelectedIndex = -1;
             viewModel.Reset();
+            gridStudent.Visibility = Visibility.Hidden;
         }
     }
 }
