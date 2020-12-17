@@ -71,10 +71,11 @@ namespace BL
         {
             return from item in dl.GetStudentIDs((id, name) =>
                     {
-                        try { Thread.Sleep(5000); } catch (ThreadInterruptedException e) { }
+                        try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
                         return new BO.ListedPerson() { ID = id, Name = name };
                     })
                    let student = item as BO.ListedPerson
+                   orderby student.ID
                    select student;
         }
     }
