@@ -8,7 +8,7 @@ namespace BO
 {
     public class Lecturer : Person
     {
-        IEnumerable<LecturerCourse> listOfCourses;
+        IEnumerable<LecturerCourse> ListOfCourses;
         public override string ToString() => this.ToStringProperty();
     }
 }

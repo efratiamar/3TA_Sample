@@ -12,9 +12,9 @@ namespace BO
     /// </summary>
     public class StudentCourse
     {
-        public int CourseId { get; set; }
-        public int CourseNumber { get; set; }
-        public string CourseName { get; set; }
+        public int ID { get; set; }
+        public int Number { get; set; }
+        public string Name { get; set; }
         public int? Grade { get; set; }
         public int Year { get; set; }
         public Semester Semester { get; set; }

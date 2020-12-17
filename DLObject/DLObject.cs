@@ -23,7 +23,7 @@ namespace DL
         //Implement IDL methods, CRUD
         public Person GetPerson(int id)
         {
-            Person per = DataSource.listPersons.Find(p => p.ID == id); 
+            Person per = DataSource.ListPersons.Find(p => p.ID == id); 
 
             if (per != null)
                 return per.Clone();
@@ -32,7 +32,7 @@ namespace DL
         }
         public IEnumerable<Person> GetAllPersons()
         {
-            return from person in DataSource.listPersons
+            return from person in DataSource.ListPersons
                    select person.Clone();
         }
         public IEnumerable<Person> GetAllPersonsBy(Predicate<Person> predicate)
@@ -41,7 +41,7 @@ namespace DL
         }
         public void AddPerson(Person p)
         {
-            DataSource.listPersons.Add(p);
+            DataSource.ListPersons.Add(p);
             //test id is unique, otherwise throw suitible Exception ...
         }
 
@@ -64,12 +64,17 @@ namespace DL
 
         public Student GetStudent(int id)
         {
-            Student stu = DataSource.listStudents.Find(p => p.ID == id); 
+            Student stu = DataSource.ListStudents.Find(p => p.ID == id); 
 
             if (stu != null)
                 return stu.Clone();
             else
                 throw new DO.BadPersonIdException(id, $"bad student id: {id}");
+        }
+        public IEnumerable<object> GetStudentIDs(Func<int, string, object> generate)
+        {
+            return from student in DataSource.ListStudents
+                   select generate(student.ID, GetPerson(student.ID).Name);
         }
 
         public IEnumerable<StudentInCourse> GetStudentInCourseList(Predicate<StudentInCourse> predicate)
@@ -84,14 +89,15 @@ namespace DL
 
             // option c - ok!!
             //Returns deferred query + clone:
-            return from sic in DataSource.listStudInCourses
+            return from sic in DataSource.ListStudInCourses
                    where predicate(sic)
                    select sic.Clone();
         }
 
         public Course GetCourse(int id)
         {
-            return DataSource.listCourses.Find(c => c.ID == id).Clone();
+            return DataSource.ListCourses.Find(c => c.ID == id).Clone();
         }
+
     }
 }

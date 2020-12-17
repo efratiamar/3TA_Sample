@@ -7,11 +7,10 @@ using System.Windows;
 
 namespace PO
 {
-    class StudentCourse : DependencyObject
+    public class StudentCourse : DependencyObject
     {
-        public int CourseId { get; set; }
-        public int CourseNumber { get; set; }
-        public string CourseName { get; set; }
+        public int Number { get; set; }
+        public string Name { get; set; }
         public int? Grade { get; set; }
         public int Year { get; set; }
         public BO.Semester Semester { get; set; }

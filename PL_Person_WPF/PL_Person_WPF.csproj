@@ -55,7 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="PO\Tools.cs" />
+    <Compile Include="PO\ListedPerson.cs" />
+    <Compile Include="ViewModel\MainWindow.cs" />
+    <Compile Include="ViewModel\Tools.cs" />
     <Compile Include="PO\Person.cs" />
     <Compile Include="PO\Student.cs" />
     <Page Include="MainWindow.xaml">
@@ -90,6 +92,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\BO.Course.datasource" />
+    <None Include="Properties\DataSources\BO.CourseLecturer.datasource" />
+    <None Include="Properties\DataSources\BO.Lecturer.datasource" />
+    <None Include="Properties\DataSources\BO.LecturerCourse.datasource" />
+    <None Include="Properties\DataSources\BO.Student.datasource" />
+    <None Include="Properties\DataSources\BO.StudentCourse.datasource" />
+    <None Include="Properties\DataSources\PO.Student.datasource" />
+    <None Include="Properties\DataSources\PO.StudentCourse.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

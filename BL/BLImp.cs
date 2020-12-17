@@ -25,25 +25,28 @@ namespace BL
             {
                 throw new BO.BadStudentIdException("Student ID is illegal", ex);
             }
-            studentBO.BirthDate = personDO.BirthDate;
-            studentBO.City = personDO.City;
-            studentBO.Name = personDO.Name;
-            studentBO.HouseNumber = personDO.HouseNumber;
-            studentBO.Street = personDO.Street;
-            studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
+            personDO.Clone(studentBO);
+            //studentBO.ID = personDO.ID;
+            //studentBO.BirthDate = personDO.BirthDate;
+            //studentBO.City = personDO.City;
+            //studentBO.Name = personDO.Name;
+            //studentBO.HouseNumber = personDO.HouseNumber;
+            //studentBO.Street = personDO.Street;
+            //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
 
             DO.Student studentDO = dl.GetStudent(id);
-            studentBO.StartYear = studentDO.StartYear;
-            studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
-            studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
+            studentDO.Clone(studentBO);
+            //studentBO.StartYear = studentDO.StartYear;
+            //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
+            //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
 
-            studentBO.listOfCourses = from sic in dl.GetStudentInCourseList(sic => sic.PersonId == id)
+            studentBO.ListOfCourses = from sic in dl.GetStudentInCourseList(sic => sic.PersonId == id)
                                     let course = dl.GetCourse(sic.CourseId)
                                     select new BO.StudentCourse()
                                     {
-                                        CourseId = course.ID,
-                                        CourseNumber = course.Number,
-                                        CourseName = course.Name,
+                                        ID = course.ID,
+                                        Number = course.Number,
+                                        Name = course.Name,
                                         Year =  course.Year,
                                         Semester = (BO.Semester)(int)course.Semester,
                                         Grade = sic.Grade
@@ -59,6 +62,14 @@ namespace BL
         public IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate)
         {
             throw new NotImplementedException();
+        }
+
+
+        public IEnumerable<BO.ListedPerson> GetStudentIDs()
+        {
+            return from item in dl.GetStudentIDs((id,name) => new BO.ListedPerson() { ID = id, Name = name })
+                   let student = item as BO.ListedPerson
+                   select student;
         }
     }
 }

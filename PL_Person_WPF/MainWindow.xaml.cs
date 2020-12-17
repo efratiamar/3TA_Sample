@@ -21,37 +21,40 @@ namespace PL_Person_WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    partial class MainWindow : Window
     {
-        IBL bl;
-        BO.Student studentBO;
-        ObservableCollection<BO.StudentCourse> courses;
+        IBL bl = BLFactory.GetBL("1");
+        public ViewModel.MainWindow viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
-
-            bl = BLFactory.GetBL("1");
+            viewModel = new ViewModel.MainWindow(bl);
+            //viewModel.Reset();
+            DataContext = viewModel;
         }
 
-        private void btGetStudentByID_Click(object sender, RoutedEventArgs e)
+        int savedCbStudentID = -1;
+        private void cbStudentID_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int id;
+            BO.Student studentBO;
+
+            if (cbStudentID.SelectedIndex < 0) return;
             try
             {
-                id = int.Parse(txtStudentID.Text);
-
-                studentBO = bl.GetStudent(id);
-                grid1.DataContext = studentBO;
-
+                id = (int)cbStudentID.SelectedValue;
+                viewModel.StudentBO = studentBO = bl.GetStudent(id);
+                //gridStudent.DataContext = studentBO;
                 //courses = new ObservableCollection<BO.StudentCourse>(studentBO.listOfCourses);
                 //studentCourseDataGrid.DataContext = courses;
-                studentCourseDataGrid.DataContext = studentBO.listOfCourses;
+                //studentCourseDataGrid.DataContext = studentBO.listOfCourses;
 
-                MessageBox.Show(studentBO.ToString(), "Student");
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show($"Unable to parse {txtStudentID.Text}");
+                //cbStudentID.Text = ((PO.ListedPerson)cbStudentID.SelectedItem).Show;
+                //cbStudentID.IsDropDownOpen = false;
+                gridStudent.Visibility = Visibility.Visible;
+                btReset.IsEnabled = true;
+                //MessageBox.Show(studentBO.ToString(), "Student");
             }
             catch (BO.BadStudentIdException ex)
             {
@@ -59,11 +62,45 @@ namespace PL_Person_WPF
             }
         }
 
-        private void btnGetAllPersonsByPerSta_Click(object sender, RoutedEventArgs e)
+        private void cbStudentID_DropDownOpened(object sender, EventArgs e) => cbStudentID_Handle();
+        private void cbStudentID_KeyUp(object sender, KeyEventArgs e) => cbStudentID_Handle();
+        private void cbStudentID_Handle()
         {
+            if (!cbStudentID.IsDropDownOpen) return;
+            var ctb = cbStudentID.Template.FindName("PART_EditableTextBox", cbStudentID) as TextBox;
+            if (ctb == null) return;
+            var caretPos = ctb.CaretIndex;
 
+            CollectionView itemsViewOriginal = (CollectionView)CollectionViewSource.GetDefaultView(cbStudentID.Items);
+            itemsViewOriginal.Filter = ((o) =>
+            {
+                if (String.IsNullOrEmpty(cbStudentID.Text))
+                {
+                    return true;
+                }
+                else
+                {
+                    if (((PO.ListedPerson)o).Show.Contains(cbStudentID.Text))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            });
+
+            itemsViewOriginal.Refresh();
+            ctb.CaretIndex = caretPos;
         }
 
-
+        private void btReset_Click(object sender, RoutedEventArgs e)
+        {
+            btReset.IsEnabled = false;
+            cbStudentID.Text = "";
+            cbStudentID.SelectedIndex = -1;
+            viewModel.Reset();
+        }
     }
 }
