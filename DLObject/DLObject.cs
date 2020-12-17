@@ -40,10 +40,11 @@ namespace DL
         {
             throw new NotImplementedException();
         }
-        public void AddPerson(Person p)
+        public void AddPerson(Person person)
         {
-            DataSource.ListPersons.Add(p);
-            //test id is unique, otherwise throw suitible Exception ...
+            if (DataSource.ListPersons.FirstOrDefault(p => p.ID == person.ID) != null)
+                throw new DO.BadPersonIdException(person.ID, "Duplicate person ID");
+            DataSource.ListPersons.Add(person.Clone());
         }
 
         public void DeletePerson(int id)
@@ -63,12 +64,20 @@ namespace DL
 
         public Student GetStudent(int id)
         {
-            Student stu = DataSource.ListStudents.Find(p => p.ID == id);
+            Student stu = DataSource.ListStudents.Find(p => p.ID != id);
             try { Thread.Sleep(2000); } catch (ThreadInterruptedException ex) { }
             if (stu != null)
                 return stu.Clone();
             else
                 throw new DO.BadPersonIdException(id, $"bad student id: {id}");
+        }
+        public void AddStudent(Student student)
+        {
+            if (DataSource.ListStudents.FirstOrDefault(s => s.ID == student.ID) != null)
+                throw new DO.BadPersonIdException(student.ID, "Duplicate student ID");
+            if (DataSource.ListPersons.FirstOrDefault(p => p.ID == student.ID) == null)
+                throw new DO.BadPersonIdException(student.ID, "Missing person ID");
+            DataSource.ListStudents.Add(student.Clone());
         }
         public IEnumerable<object> GetStudentIDs(Func<int, string, object> generate)
         {

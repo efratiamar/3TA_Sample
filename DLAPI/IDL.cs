@@ -12,7 +12,7 @@ namespace DLAPI
         IEnumerable<Person> GetAllPersons();
         IEnumerable<Person> GetAllPersonsBy(Predicate<Person> predicate);
         Person GetPerson(int id);
-        void AddPerson(Person p);
+        void AddPerson(Person person);
         void UpdatePerson(Person person);
         void UpdatePerson(int id, Action<Person> update); //method that knows to updt specific fields in Person
         void DeletePerson(int id);
@@ -21,6 +21,7 @@ namespace DLAPI
         #region Student
         Student GetStudent(int id);
         IEnumerable<object> GetStudentIDs(Func<int, string, object> generate);
+        void AddStudent(Student student);
         #endregion
 
         #region StudentInCourse
