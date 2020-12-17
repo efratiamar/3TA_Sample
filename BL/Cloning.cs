@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public static class Tools
+    public static class Cloning
     {
         public static void Clone<T, S>(this S from, T to)
         {

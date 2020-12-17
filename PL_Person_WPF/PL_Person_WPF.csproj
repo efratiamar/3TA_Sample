@@ -57,7 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="PO\ListedPerson.cs" />
     <Compile Include="ViewModel\MainWindow.cs" />
-    <Compile Include="ViewModel\Tools.cs" />
+    <Compile Include="ViewModel\Cloning.cs" />
     <Compile Include="PO\Person.cs" />
     <Compile Include="PO\Student.cs" />
     <Page Include="MainWindow.xaml">
