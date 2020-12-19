@@ -26,7 +26,7 @@ namespace ViewModel
                 if (value == null)
                     Student = new PO.Student();
                 else
-                    value.Clone(Student);
+                    value.DeepCopyTo(Student);
                 // update more properties in Student if needed... That is, properties that don't appear as is in studentBO...
             }
         }

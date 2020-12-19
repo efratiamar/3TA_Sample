@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    public static class Cloning
+    public static class DeepCopyUtilities
     {
-        public static void Clone<T, S>(this S from, T to)
+        // It is not flat object - need recursion
+        public static void DeepCopyTo<T, S>(this S from, T to)
         {
-            foreach (PropertyInfo propTo in to.GetType().GetProperties())
+            foreach (PropertyInfo propTo in typeof(T).GetProperties())
             {
-                PropertyInfo propFrom = from.GetType().GetProperty(propTo.Name);
+                PropertyInfo propFrom = typeof(S).GetProperty(propTo.Name);
                 if (propFrom == null)
                     continue;
                 var value = propFrom.GetValue(from, null);
@@ -27,6 +28,8 @@ namespace ViewModel
                     var target = propTo.GetValue(to, null);
                     //if (target == null)
                     //    target = Activator.CreateInstance(propTo.PropertyType);
+
+                    // If the property is a collection...
                     if (value is IEnumerable)
                     {
                         Type itemType = propTo.PropertyType.GetGenericArguments()[0];
@@ -34,12 +37,12 @@ namespace ViewModel
                         foreach (var item in (value as IEnumerable))
                         {
                             var targetItem = Activator.CreateInstance(itemType);
-                            item.Clone(targetItem);
+                            item.DeepCopyTo(targetItem);
                             propTo.PropertyType.GetMethod("Add").Invoke(target, new object[] { targetItem });
                         }
                     }
                     else
-                        value.Clone(target);
+                        value.DeepCopyTo(target);
                 }
             }
         }

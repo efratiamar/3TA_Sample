@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public static class Cloning
+    public static class DeepCopyUtilities
     {
-        public static void Clone<T, S>(this S from, T to)
+        public static void CopyPropertiesTo<T, S>(this S from, T to)
         {
-            foreach (PropertyInfo propTo in to.GetType().GetProperties())
+            foreach (PropertyInfo propTo in typeof(T).GetProperties())
             {
-                PropertyInfo propFrom = from.GetType().GetProperty(propTo.Name);
+                PropertyInfo propFrom = typeof(S).GetProperty(propTo.Name);
                 if (propFrom == null)
                     continue;
                 var value = propFrom.GetValue(from, null);
@@ -22,15 +22,15 @@ namespace BL
                     propTo.SetValue(to, value);
             }
         }
-        public static object CloneNew<S>(this S from, Type type)
+        public static object CopyPropertiesToNew<S>(this S from, Type type)
         {
-            object to = Activator.CreateInstance(type);
-            from.Clone(to);
+            object to = Activator.CreateInstance(type); // new object of Type
+            from.CopyPropertiesTo(to);
             return to;
         }
-        public static BO.StudentCourse CloneToStudentCourse(this DO.Course course, DO.StudentInCourse sic)
+        public static BO.StudentCourse CopyToStudentCourse(this DO.Course course, DO.StudentInCourse sic)
         {
-            BO.StudentCourse result = (BO.StudentCourse)course.CloneNew(typeof(BO.StudentCourse));
+            BO.StudentCourse result = (BO.StudentCourse)course.CopyPropertiesToNew(typeof(BO.StudentCourse));
             // propertys' names changed? copy them here...
             result.Grade = sic.Grade;
             return result;

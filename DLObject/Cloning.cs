@@ -32,17 +32,13 @@ namespace DL
         //}
 
         //third way - With Bonus // generic shallowed copy, properties only
-        internal static T Clone<T>(this T original)
+        internal static T Clone<T>(this T original) where T : new()
         {
-            T copyToObject = (T)Activator.CreateInstance(original.GetType());
-            //...
-            
-            foreach (PropertyInfo sourcePropertyInfo in original.GetType().GetProperties())
-            {
-                PropertyInfo destPropertyInfo = original.GetType().GetProperty(sourcePropertyInfo.Name);
-
-                destPropertyInfo.SetValue(copyToObject, sourcePropertyInfo.GetValue(original, null), null);
-            }
+            T copyToObject = new T();
+            //T copyToObject = (T)Activator.CreateInstance(typeof(T));
+ 
+            foreach (PropertyInfo propertyInfo in typeof(T).GetProperties())
+                propertyInfo.SetValue(copyToObject, propertyInfo.GetValue(original, null), null);
 
             return copyToObject;
         }

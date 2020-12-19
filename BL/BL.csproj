@@ -56,7 +56,7 @@
     <Compile Include="IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BO\Tools.cs" />
-    <Compile Include="Cloning.cs" />
+    <Compile Include="DeepCopyUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DLAPI\DLAPI.csproj">

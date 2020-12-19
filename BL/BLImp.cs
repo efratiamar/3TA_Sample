@@ -26,7 +26,7 @@ namespace BL
             {
                 throw new BO.BadStudentIdException("Student ID is illegal", ex);
             }
-            personDO.Clone(studentBO);
+            personDO.CopyPropertiesTo(studentBO);
             //studentBO.ID = personDO.ID;
             //studentBO.BirthDate = personDO.BirthDate;
             //studentBO.City = personDO.City;
@@ -36,14 +36,14 @@ namespace BL
             //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
 
             DO.Student studentDO = dl.GetStudent(id);
-            studentDO.Clone(studentBO);
+            studentDO.CopyPropertiesTo(studentBO);
             //studentBO.StartYear = studentDO.StartYear;
             //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
             //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
 
             studentBO.ListOfCourses = from sic in dl.GetStudentInCourseList(sic => sic.PersonId == id)
                                       let course = dl.GetCourse(sic.CourseId)
-                                      select course.CloneToStudentCourse(sic);
+                                      select course.CopyToStudentCourse(sic);
                                       //new BO.StudentCourse()
                                       //{
                                       //    ID = course.ID,
