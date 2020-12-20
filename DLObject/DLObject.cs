@@ -67,7 +67,7 @@ namespace DL
         #region Student
         public DO.Student GetStudent(int id)
         {
-            DO.Student stu = DataSource.ListStudents.Find(p => p.ID != id);
+            DO.Student stu = DataSource.ListStudents.Find(p => p.ID == id);
             try { Thread.Sleep(2000); } catch (ThreadInterruptedException ex) { }
             if (stu != null)
                 return stu.Clone();

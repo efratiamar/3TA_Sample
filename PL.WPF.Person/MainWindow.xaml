@@ -15,10 +15,17 @@
         <Label Content="Student:" Grid.Row="0" HorizontalAlignment="Left" Margin="15,15,0,0" VerticalAlignment="Top" Height="25" Width="90"/>
         <ComboBox x:Name="cbStudentID" HorizontalAlignment="Left" Text="" VerticalAlignment="Top"
                   Grid.Row="0" Height="25" Margin="105,15,15,0" Width="250"
-                  ItemsSource="{Binding StudentIDs}" DisplayMemberPath="Show" SelectedValuePath="Person.ID"
+                  ItemsSource="{Binding StudentIDs}"
+                  SelectedValuePath="Person.ID"
+                  DisplayMemberPath="Show"
                   IsEditable="True" IsTextSearchEnabled="False" IsTextSearchCaseSensitive="False"
                   HorizontalContentAlignment="Left" VerticalContentAlignment="Top"
                   KeyUp="cbStudentID_KeyUp" SelectionChanged="cbStudentID_SelectionChanged" DropDownOpened="cbStudentID_DropDownOpened">
+            <!--ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Path=Show}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate-->
         </ComboBox>
         <Button x:Name="btReset" Content="Reset" HorizontalAlignment="Right" Height="25" Margin="0,15,15,0" VerticalAlignment="Top" Width="60"
                 Click="btReset_Click">
