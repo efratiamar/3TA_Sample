@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BO;
+//using BO;
 
 
 namespace BLAPI
@@ -13,10 +13,10 @@ namespace BLAPI
         //Add Person to Course
         //get all courses for student
         //etc...
-        Student GetStudent(int id);
-        IEnumerable<Student> GetAllStudents();
-        IEnumerable<ListedPerson> GetStudentIDs();
+        BO.Student GetStudent(int id);
+        IEnumerable<BO.Student> GetAllStudents();
+        IEnumerable<BO.ListedPerson> GetStudentIDs();
 
-        IEnumerable<Student> GetStudentsBy(Predicate<Student> predicate);
+        IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate);
     }
 }

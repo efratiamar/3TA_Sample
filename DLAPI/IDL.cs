@@ -25,6 +25,7 @@ namespace DLAPI
         #region Student
         Student GetStudent(int id);
         IEnumerable<object> GetStudentIDs(Func<int, string, object> generate);
+        IEnumerable<object> GetStudentIDs(Func<int, object> generate);
         void AddStudent(Student student);
         void UpdateStudent(Student student);
         void UpdateStudent(int id, Action<Student> update); //method that knows to updt specific fields in Student
