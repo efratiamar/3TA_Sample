@@ -96,8 +96,11 @@
     <None Include="Properties\DataSources\BO.CourseLecturer.datasource" />
     <None Include="Properties\DataSources\BO.Lecturer.datasource" />
     <None Include="Properties\DataSources\BO.LecturerCourse.datasource" />
+    <None Include="Properties\DataSources\BO.Person.datasource" />
     <None Include="Properties\DataSources\BO.Student.datasource" />
     <None Include="Properties\DataSources\BO.StudentCourse.datasource" />
+    <None Include="Properties\DataSources\PO.ListedPerson.datasource" />
+    <None Include="Properties\DataSources\PO.Person.datasource" />
     <None Include="Properties\DataSources\PO.Student.datasource" />
     <None Include="Properties\DataSources\PO.StudentCourse.datasource" />
     <None Include="Properties\Settings.settings">

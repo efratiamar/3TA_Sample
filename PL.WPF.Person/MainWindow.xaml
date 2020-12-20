@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF.Person"
+        xmlns:po="clr-namespace:PO"
         mc:Ignorable="d"
-        Title="MainWindow" Height="Auto" Width="Auto" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
-
+        Title="MainWindow" Height="Auto" Width="Auto" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style x:Key="style" TargetType="Control">
+            <Setter Property="Background" Value="Turquoise"></Setter>
+        </Style>
+        <CollectionViewSource x:Key="studentViewSource" d:DesignSource="{d:DesignInstance {x:Type po:Student}, CreateList=True}"/>
+    </Window.Resources>
     <Grid x:Name="gridWindow" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,18 +23,21 @@
                   Grid.Row="0" Height="25" Margin="105,15,15,0" Width="250"
                   ItemsSource="{Binding StudentIDs}"
                   SelectedValuePath="Person.ID"
-                  DisplayMemberPath="Show"
                   IsEditable="True" IsTextSearchEnabled="False" IsTextSearchCaseSensitive="False"
                   HorizontalContentAlignment="Left" VerticalContentAlignment="Top"
                   KeyUp="cbStudentID_KeyUp" SelectionChanged="cbStudentID_SelectionChanged" DropDownOpened="cbStudentID_DropDownOpened">
-            <!--ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Path=Show}"/>
+            <ComboBox.ItemTemplate>
+                <!--DisplayMemberPath="Show"-->
+                <DataTemplate DataType="{x:Type po:ListedPerson}">
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lbListed" Content="{Binding Path=Show}" Tag="{Binding Path=Person.ID}"/>
+                        <Button x:Name="btnListed" Click="btnListed_Click" Style="{StaticResource style}">TRY</Button>
+                    </StackPanel>
                 </DataTemplate>
-            </ComboBox.ItemTemplate-->
+            </ComboBox.ItemTemplate>
         </ComboBox>
         <Button x:Name="btReset" Content="Reset" HorizontalAlignment="Right" Height="25" Margin="0,15,15,0" VerticalAlignment="Top" Width="60"
-                Click="btReset_Click">
+                Click="btReset_Click" >
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="IsEnabled" Value="True"/>
@@ -72,11 +81,11 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="iDTextBox" Grid.Column="1" Style="{StaticResource style}" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Graduation:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="graduationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="2" Text="{Binding Graduation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <ComboBox x:Name="graduationComboBox" Grid.Column="1" DisplayMemberPath="Graduation" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="2" Text="{Binding Graduation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Start Year:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="3" VerticalAlignment="Center"/>
             <TextBox x:Name="startYearTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="3" Text="{Binding StartYear, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="4" VerticalAlignment="Center"/>

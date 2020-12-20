@@ -7,8 +7,6 @@
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.SimpleWPF.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" >
-
-
     <Grid >
         <Label Content="Student:" Grid.Row="0" HorizontalAlignment="Left" Margin="15,15,0,0" VerticalAlignment="Top" Height="25" Width="90"/>
         <ComboBox x:Name="cbStudentID" HorizontalAlignment="Left" Text="" VerticalAlignment="Top"

@@ -26,7 +26,20 @@ namespace ViewModel
                 if (value == null)
                     Student = new PO.Student();
                 else
+                {
                     value.DeepCopyTo(Student);
+                    //Student.ID = value.ID;
+                    ////...
+                    //Student.ListOfCourses.Clear();
+                    //foreach (var fromCourse in value.ListOfCourses)
+                    //{
+                    //    PO.StudentCourse toCourse = new PO.StudentCourse();
+                    //    toCourse.Grade = fromCourse.Grade;
+                    //    toCourse. Number = fromCourse.Number;
+                    //    // ...
+                    //    Student.ListOfCourses.Add(toCourse);
+                    //}
+                }
                 // update more properties in Student if needed... That is, properties that don't appear as is in studentBO...
             }
         }

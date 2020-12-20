@@ -11,5 +11,6 @@ namespace PO
         BO.ListedPerson person;
         public BO.ListedPerson Person { set { person = value; Show = string.Format("{0,-9} {1}", person.ID, person.Name); } get => person; }
         public string Show { get; private set; }
+        public override string ToString() => Show;
     }
 }
