@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using DLAPI;
-using DO;
+//using DO;
 using DS;
 
 namespace DL
@@ -23,25 +23,25 @@ namespace DL
 
         //Implement IDL methods, CRUD
         #region Person
-        public Person GetPerson(int id)
+        public DO.Person GetPerson(int id)
         {
-            Person per = DataSource.ListPersons.Find(p => p.ID == id);
+            DO.Person per = DataSource.ListPersons.Find(p => p.ID == id);
 
             if (per != null)
                 return per.Clone();
             else
                 throw new DO.BadPersonIdException(id, $"bad person id: {id}");
         }
-        public IEnumerable<Person> GetAllPersons()
+        public IEnumerable<DO.Person> GetAllPersons()
         {
             return from person in DataSource.ListPersons
                    select person.Clone();
         }
-        public IEnumerable<Person> GetAllPersonsBy(Predicate<Person> predicate)
+        public IEnumerable<DO.Person> GetAllPersonsBy(Predicate<DO.Person> predicate)
         {
             throw new NotImplementedException();
         }
-        public void AddPerson(Person person)
+        public void AddPerson(DO.Person person)
         {
             if (DataSource.ListPersons.FirstOrDefault(p => p.ID == person.ID) != null)
                 throw new DO.BadPersonIdException(person.ID, "Duplicate person ID");
@@ -53,28 +53,28 @@ namespace DL
             throw new NotImplementedException();
         }
 
-        public void UpdatePerson(Person p)
+        public void UpdatePerson(DO.Person p)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdatePerson(int id, Action<Person> update)
+        public void UpdatePerson(int id, Action<DO.Person> update)
         {
             throw new NotImplementedException();
         }
         #endregion Person
 
         #region Student
-        public Student GetStudent(int id)
+        public DO.Student GetStudent(int id)
         {
-            Student stu = DataSource.ListStudents.Find(p => p.ID != id);
+            DO.Student stu = DataSource.ListStudents.Find(p => p.ID != id);
             try { Thread.Sleep(2000); } catch (ThreadInterruptedException ex) { }
             if (stu != null)
                 return stu.Clone();
             else
                 throw new DO.BadPersonIdException(id, $"bad student id: {id}");
         }
-        public void AddStudent(Student student)
+        public void AddStudent(DO.Student student)
         {
             if (DataSource.ListStudents.FirstOrDefault(s => s.ID == student.ID) != null)
                 throw new DO.BadPersonIdException(student.ID, "Duplicate student ID");
@@ -89,12 +89,12 @@ namespace DL
         }
 
 
-        public void UpdateStudent(Student student)
+        public void UpdateStudent(DO.Student student)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateStudent(int id, Action<Student> update)
+        public void UpdateStudent(int id, Action<DO.Student> update)
         {
             throw new NotImplementedException();
         }
@@ -106,7 +106,7 @@ namespace DL
         #endregion Student
 
         #region StudentInCourse
-        public IEnumerable<StudentInCourse> GetStudentInCourseList(Predicate<StudentInCourse> predicate)
+        public IEnumerable<DO.StudentInCourse> GetStudentInCourseList(Predicate<DO.StudentInCourse> predicate)
         {
             //option A - not good!!! 
             //produces final list instead of deferred query and does not allow proper cloning:
@@ -125,7 +125,7 @@ namespace DL
         #endregion StudentInCourse
 
         #region Course
-        public Course GetCourse(int id)
+        public DO.Course GetCourse(int id)
         {
             return DataSource.ListCourses.Find(c => c.ID == id).Clone();
         }
