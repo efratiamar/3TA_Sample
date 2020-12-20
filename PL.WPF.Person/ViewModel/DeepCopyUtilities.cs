@@ -11,11 +11,12 @@ namespace ViewModel
     public static class DeepCopyUtilities
     {
         // It is not flat object - need recursion
-        public static void DeepCopyTo<T, S>(this S from, T to)
+        public static void DeepCopyTo<S, T>(this S from, T to)
         {
-            foreach (PropertyInfo propTo in typeof(T).GetProperties())
+            var fromType = from.GetType();
+            foreach (PropertyInfo propTo in to.GetType().GetProperties())
             {
-                PropertyInfo propFrom = typeof(S).GetProperty(propTo.Name);
+                PropertyInfo propFrom = fromType.GetProperty(propTo.Name);
                 if (propFrom == null)
                     continue;
                 var value = propFrom.GetValue(from, null);

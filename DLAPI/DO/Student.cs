@@ -12,5 +12,6 @@ namespace DO
         public int StartYear { get; set; }
         public StudentStatus Status { get; set; }
         public StudentGraduate Graduation { get; set; }
+        public override string ToString() => this.ToStringProperty();
     }
 }

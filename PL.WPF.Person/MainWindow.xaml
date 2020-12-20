@@ -21,7 +21,7 @@
                   KeyUp="cbStudentID_KeyUp" SelectionChanged="cbStudentID_SelectionChanged" DropDownOpened="cbStudentID_DropDownOpened">
         </ComboBox>
         <Button x:Name="btReset" Content="Reset" HorizontalAlignment="Right" Height="25" Margin="0,15,15,0" VerticalAlignment="Top" Width="60"
-                IsEnabled="{Binding Selected}" Click="btReset_Click">
+                Click="btReset_Click">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="IsEnabled" Value="True"/>

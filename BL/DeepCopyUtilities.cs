@@ -12,7 +12,7 @@ namespace BL
     {
         public static void CopyPropertiesTo<T, S>(this S from, T to)
         {
-            foreach (PropertyInfo propTo in typeof(T).GetProperties())
+            foreach (PropertyInfo propTo in to.GetType().GetProperties())
             {
                 PropertyInfo propFrom = typeof(S).GetProperty(propTo.Name);
                 if (propFrom == null)
