@@ -59,7 +59,10 @@ namespace BL
 
         public IEnumerable<BO.Student> GetAllStudents()
         {
-            throw new NotImplementedException();
+            return from item in dl.GetStudentIDs( (id) => { return GetStudent(id); } )
+                   let student = item as BO.Student
+                   orderby student.ID
+                   select student;
         }
         public IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate)
         {

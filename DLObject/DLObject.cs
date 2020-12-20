@@ -88,7 +88,11 @@ namespace DL
                    select generate(student.ID, GetPerson(student.ID).Name);
         }
 
-
+        public IEnumerable<object> GetStudentIDs(Func<int, object> generate)
+        {
+            return from student in DataSource.ListStudents
+                   select generate(student.ID);
+        }
         public void UpdateStudent(DO.Student student)
         {
             throw new NotImplementedException();
