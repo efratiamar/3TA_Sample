@@ -82,16 +82,21 @@ namespace DL
                 throw new DO.BadPersonIdException(student.ID, "Missing person ID");
             DataSource.ListStudents.Add(student.Clone());
         }
-        public IEnumerable<object> GetStudentIDs(Func<int, string, object> generate)
+        public IEnumerable<DO.Student> GetAllStudents()
+        {
+            return from student in DataSource.ListStudents
+                   select student.Clone();
+        }
+        public IEnumerable<object> GetStudentFields(Func<int, string, object> generate)
         {
             return from student in DataSource.ListStudents
                    select generate(student.ID, GetPerson(student.ID).Name);
         }
 
-        public IEnumerable<object> GetStudentIDs(Func<int, object> generate)
+        public IEnumerable<object> GetStudentListWithSelectedFields(Func<DO.Student,object> generate)
         {
             return from student in DataSource.ListStudents
-                   select generate(student.ID);
+                   select generate(student);
         }
         public void UpdateStudent(DO.Student student)
         {

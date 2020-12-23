@@ -15,7 +15,7 @@ namespace BLAPI
         //etc...
         BO.Student GetStudent(int id);
         IEnumerable<BO.Student> GetAllStudents();
-        IEnumerable<BO.ListedPerson> GetStudentIDs();
+        IEnumerable<BO.ListedPerson> GetStudentIDNameList();
 
         IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate);
     }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DLAPI;
 using BLAPI;
 using System.Threading;
@@ -13,11 +11,11 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();
 
-        public BO.Student GetStudent(int id)
+        BO.Student studentDoBoAdapter(DO.Student studentDO)
         {
             BO.Student studentBO = new BO.Student();
-
             DO.Person personDO;
+            int id = studentDO.ID;
             try
             {
                 personDO = dl.GetPerson(id);
@@ -35,7 +33,6 @@ namespace BL
             //studentBO.Street = personDO.Street;
             //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
 
-            DO.Student studentDO = dl.GetStudent(id);
             studentDO.CopyPropertiesTo(studentBO);
             //studentBO.StartYear = studentDO.StartYear;
             //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
@@ -44,41 +41,56 @@ namespace BL
             studentBO.ListOfCourses = from sic in dl.GetStudentInCourseList(sic => sic.PersonId == id)
                                       let course = dl.GetCourse(sic.CourseId)
                                       select course.CopyToStudentCourse(sic);
-                                      //new BO.StudentCourse()
-                                      //{
-                                      //    ID = course.ID,
-                                      //    Number = course.Number,
-                                      //    Name = course.Name,
-                                      //    Year = course.Year,
-                                      //    Semester = (BO.Semester)(int)course.Semester,
-                                      //    Grade = sic.Grade
-                                      //};
+            //new BO.StudentCourse()
+            //{
+            //    ID = course.ID,
+            //    Number = course.Number,
+            //    Name = course.Name,
+            //    Year = course.Year,
+            //    Semester = (BO.Semester)(int)course.Semester,
+            //    Grade = sic.Grade
+            //};
+
             return studentBO;
         }
 
+        public BO.Student GetStudent(int id)
+        {
+            DO.Student studentDO;
+            try
+            {
+                studentDO = dl.GetStudent(id);
+            }
+            catch (DO.BadPersonIdException ex)
+            {
+                throw new BO.BadStudentIdException("Person id does not exist or he is not a student", ex);
+            }
+            return studentDoBoAdapter(studentDO);
+        }
 
         public IEnumerable<BO.Student> GetAllStudents()
         {
-            return from item in dl.GetStudentIDs( (id) => { return GetStudent(id); } )
-                   let student = item as BO.Student
-                   orderby student.ID
-                   select student;
+            //return from item in dl.GetStudentListWithSelectedFields( (stud) => { return GetStudent(stud.ID); } )
+            //       let student = item as BO.Student
+            //       orderby student.ID
+            //       select student;
+            return from item in dl.GetAllStudents()
+                   select studentDoBoAdapter(item);
         }
         public IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate)
         {
             throw new NotImplementedException();
         }
 
-
-        public IEnumerable<BO.ListedPerson> GetStudentIDs()
+        public IEnumerable<BO.ListedPerson> GetStudentIDNameList()
         {
-            return from item in dl.GetStudentIDs((id, name) =>
+            return from item in dl.GetStudentListWithSelectedFields((Func<DO.Student, object>)((stud) =>
                     {
                         try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                        return new BO.ListedPerson() { ID = id, Name = name };
-                    })
+                        return new BO.ListedPerson() { ID = stud.ID, Name = dl.GetPerson(stud.ID).Name };
+                    }))
                    let student = item as BO.ListedPerson
-                   orderby student.ID
+                   //orderby student.ID
                    select student;
         }
     }

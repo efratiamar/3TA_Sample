@@ -98,7 +98,7 @@ namespace ViewModel
             getStudentIDsWorker.DoWork += (object sender, DoWorkEventArgs args) =>
             {
                 BackgroundWorker worker = (BackgroundWorker)sender;
-                foreach (var item in bl.GetStudentIDs())
+                foreach (var item in bl.GetStudentIDNameList())
                 {
                     if (worker.CancellationPending) break;
                     worker.ReportProgress(0, item);
