@@ -33,11 +33,24 @@ namespace DLAPI
         #endregion
 
         #region StudentInCourse
-        IEnumerable<DO.StudentInCourse> GetStudentInCourseList(Predicate<DO.StudentInCourse> predicate);
+        IEnumerable<DO.StudentInCourse> GetStudentsInCourseList(Predicate<DO.StudentInCourse> predicate);        
+        void AddStudentInCourse(int perID, int courseID, float grade=0);
+        void UpdateStudentGradeInCourse(int perID, int courseID, float grade);
+        void DeleteStudentInCourse(int perID, int courseID);
+        void DeleteStudentFromAllCourses(int perID);
+
         #endregion
 
         #region Course
         DO.Course GetCourse(int id);
+        IEnumerable<DO.Course> GetAllCourses();
+
         #endregion
+
+        #region Lecturer
+        IEnumerable<DO.LecturerInCourse> GetLecturersInCourseList(Predicate<DO.LecturerInCourse> predicate);
+        
+        #endregion
+
     }
 }

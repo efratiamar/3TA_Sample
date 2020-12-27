@@ -6,64 +6,17 @@
         xmlns:local="clr-namespace:PL.SimpleWPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.SimpleWPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" >
-    <Grid >
-        <Label Content="Student:" Grid.Row="0" HorizontalAlignment="Left" Margin="15,15,0,0" VerticalAlignment="Top" Height="25" Width="90"/>
-        <ComboBox x:Name="cbStudentID" HorizontalAlignment="Left" Text="" VerticalAlignment="Top"
-                  Grid.Row="0" Height="25" Margin="105,15,15,0" Width="250"
-                  ItemsSource="{Binding}" 
-                  HorizontalContentAlignment="Left" VerticalContentAlignment="Top" SelectionChanged="cbStudentID_SelectionChanged"/>
-        <Grid x:Name="gridOneStudent"  HorizontalAlignment="Left" Margin="39,76,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Label Content="Birth Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <DatePicker x:Name="birthDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" SelectedDate="{Binding BirthDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-            <Label Content="City:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="cityTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Graduation:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <ComboBox x:Name="graduationComboBox" Grid.Column="1" SelectedItem="{Binding Graduation}" HorizontalAlignment="Left" Height="Auto"  Margin="3" Grid.Row="2" VerticalAlignment="Center" Width="120"/>
+        Title="Perfect University" Height="444.695" Width="579.863" >
+    <Grid>
+        <Label Content="Welcome to our Perfect University! " HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
+        <GroupBox Header="Choose Option:" HorizontalAlignment="Left" Height="186" Margin="115,136,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontStyle="Italic" FontWeight="SemiBold">
+            <StackPanel Margin="21,20,29,24">
+                <RadioButton x:Name ="rbStudents" Content="Students" Height="24" IsChecked="True"/>
+                <RadioButton x:Name ="rbLecturers" Content="Lecturers" Height="23" Margin="0,0,-11,0"/>
+                <RadioButton x:Name ="rbCourses" Content="Courses" Height="35"/>
+            </StackPanel>
+        </GroupBox>
+        <Button x:Name="btnGO" Content="GO" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
 
-            <Label Content="House Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="houseNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding HouseNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Personal Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <ComboBox x:Name="personalStatusComboBox" Grid.Column="1"  SelectedItem="{Binding PersonalStatus}" HorizontalAlignment="Left" Height="Auto"  Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="120"/>
-
-            <Label Content="Start Year:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-            <TextBox x:Name="startYearTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding StartYear, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-            <ComboBox x:Name="statusComboBox" Grid.Column="1" SelectedItem="{Binding Status}" HorizontalAlignment="Left" Height="Auto"  Margin="3" Grid.Row="8" VerticalAlignment="Center" Width="120"/>
-
-            <Label Content="Street:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
-            <TextBox x:Name="streetTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="9" Text="{Binding Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        </Grid>
-        <DataGrid x:Name="studentCourseDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="299,193,93,26" RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="gradeColumn" Binding="{Binding Grade}" Header="Grade" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="numberColumn" Binding="{Binding Number}" Header="Number" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="semesterColumn" Binding="{Binding Semester}" Header="Semester" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="yearColumn" Binding="{Binding Year}" Header="Year" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Label Content="List of Courses for selected Student:" HorizontalAlignment="Left" Margin="299,165,0,0" VerticalAlignment="Top" Height="23" Width="209"/>
     </Grid>
 </Window>

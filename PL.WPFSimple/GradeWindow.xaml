@@ -1,0 +1,15 @@
+﻿<Window x:Class="PL.SimpleWPF.GradeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.SimpleWPF"
+        mc:Ignorable="d"
+        Title="GradeWindow" Height="168.163" Width="235.804">
+    <Grid>
+        <Label Content="Select updated grade:" HorizontalAlignment="Left" Height="30" Margin="10,49,0,0" VerticalAlignment="Top" Width="130"/>
+        <ComboBox x:Name="cbGrade" Text="{Binding Grade}" HorizontalAlignment="Left" Margin="145,49,0,0" VerticalAlignment="Top" Width="50" Height="23"/>
+        <Button x:Name="btUpdateGrade" Content="Update Grade" HorizontalAlignment="Left" Margin="61,100,0,0" VerticalAlignment="Top" Width="101" Height="26" Click="btUpdateGrade_Click"/>
+
+    </Grid>
+</Window>
