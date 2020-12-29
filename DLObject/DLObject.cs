@@ -67,7 +67,7 @@ namespace DL
             if (per != null)
             {
                 DataSource.ListPersons.Remove(per);
-                DataSource.ListPersons.Add(per.Clone());
+                DataSource.ListPersons.Add(person.Clone());
             }
             else
                 throw new DO.BadPersonIdException(person.ID, $"bad person id: {person.ID}");
@@ -119,7 +119,7 @@ namespace DL
             if (stu != null)
             {
                 DataSource.ListStudents.Remove(stu);
-                DataSource.ListStudents.Add(stu.Clone());
+                DataSource.ListStudents.Add(student.Clone());
             }
             else
                 throw new DO.BadPersonIdException(student.ID, $"bad student id: {student.ID}");
