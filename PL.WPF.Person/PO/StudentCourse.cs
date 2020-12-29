@@ -11,7 +11,7 @@ namespace PO
     {
         public int Number { get; set; }
         public string Name { get; set; }
-        public int? Grade { get; set; }
+        public float? Grade { get; set; }
         public int Year { get; set; }
         public BO.Semester Semester { get; set; }
     }
