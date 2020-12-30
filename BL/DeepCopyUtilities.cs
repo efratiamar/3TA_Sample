@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public static class DeepCopyUtilities
+    static class DeepCopyUtilities
     {
         public static void CopyPropertiesTo<T, S>(this S from, T to)
         {
