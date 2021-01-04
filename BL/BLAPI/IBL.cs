@@ -37,8 +37,9 @@ namespace BLAPI
         IEnumerable<BO.Course> GetAllCourses();
         #endregion
 
-
-
+        #region StudentCourse
+        IEnumerable<BO.StudentCourse> GetAllCoursesPerStudent(int id);
+        #endregion
 
     }
 }

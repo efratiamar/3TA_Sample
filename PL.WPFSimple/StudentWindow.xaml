@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.SimpleWPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.SimpleWPF.StudentWindow"
         mc:Ignorable="d"
-        Title="Student" Height="488.489" Width="1287.15" >
+        Title="Student" Height="488.489" Width="1287.15" WindowStartupLocation="CenterScreen" >
 
     <Grid Margin="0,0,0.2,-0.8" >
         <Grid.RowDefinitions>

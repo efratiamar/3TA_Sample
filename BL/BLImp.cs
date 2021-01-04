@@ -202,6 +202,13 @@ namespace BL
                    select courseDoBoAdapter(crsDO);
         }
 
+        public IEnumerable<BO.StudentCourse> GetAllCoursesPerStudent(int id)
+        {
+            return from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
+                                      let course = dl.GetCourse(sic.CourseId)
+                                      select course.CopyToStudentCourse(sic);
+        }
+
         #endregion
 
 

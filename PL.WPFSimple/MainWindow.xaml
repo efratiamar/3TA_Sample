@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.SimpleWPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.SimpleWPF.MainWindow"
         mc:Ignorable="d"
-        Title="Perfect University" Height="444.695" Width="579.863" >
+        Title="Perfect University" Height="444.695" Width="579.863" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Label Content="Welcome to our Perfect University! " HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
         <GroupBox Header="Choose Option:" HorizontalAlignment="Left" Height="186" Margin="115,136,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontStyle="Italic" FontWeight="SemiBold">
