@@ -96,9 +96,8 @@ namespace PL.WPF.Person
             Button btn = (Button)sender;
             StackPanel parent = (StackPanel)btn.Parent;
             Label lbl = (Label)parent.FindName("lbListed");
-            new Trials(viewModel).Show();
-            //MessageBox.Show(lbl.Tag.ToString());
-            //MessageBox.Show(((PO.ListedPerson)btn.DataContext).Person.Name);
+            MessageBox.Show(lbl.Tag.ToString());
+            MessageBox.Show(((PO.ListedPerson)btn.DataContext).Person.Name);
         }
     }
 }

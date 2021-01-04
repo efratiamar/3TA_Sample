@@ -12,10 +12,10 @@ namespace DS
 {
     public static class DataSource
     {
-        public static List<Person> Persons;
-        public static List<Course> Courses;
-        public static List<Student> Students;
-        public static List<Lecturer> Lecturers;
+        public static List<Person> ListPersons;
+        public static List<Course> ListCourses;
+        public static List<Student> ListStudents;
+        public static List<Lecturer> ListLecturers;
         public static List<LecturerInCourse> ListLectInCourses;
         public static List<StudentInCourse> ListStudInCourses;
 
@@ -25,7 +25,7 @@ namespace DS
         }
         static void InitAllLists()
         {
-            Persons = new List<Person>
+            ListPersons = new List<Person>
             {
                 new Person
                 {
@@ -86,7 +86,7 @@ namespace DS
             };
 
 
-            Students = new List<Student>
+            ListStudents = new List<Student>
             {
                 new Student
                 {
@@ -112,7 +112,7 @@ namespace DS
 
             };
 
-            Courses = new List<Course>
+            ListCourses = new List<Course>
             {
                 new Course
                 {

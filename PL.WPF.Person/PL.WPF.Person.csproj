@@ -56,9 +56,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="PO\ListedPerson.cs" />
-    <Compile Include="Trials.xaml.cs">
-      <DependentUpon>Trials.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\MainWindow.cs" />
     <Compile Include="ViewModel\DeepCopyUtilities.cs" />
     <Compile Include="PO\Person.cs" />
@@ -75,10 +72,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Trials.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PO\StudentCourse.cs" />
