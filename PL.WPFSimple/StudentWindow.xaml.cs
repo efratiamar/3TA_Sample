@@ -53,12 +53,10 @@ namespace PL.SimpleWPF
         void RefreshAllRegisteredCoursesGrid()
         {
             studentCourseDataGrid.DataContext = bl.GetAllCoursesPerStudent(curStu.ID);
-                //curStu.ListOfCourses.ToList();
         }
 
         void RefreshAllNotRegisteredCoursesGrid()
         {
-            //List<BO.Course> listOfUnRegisteredCourses = bl.GetAllCourses().Where(c1 => curStu.ListOfCourses.All(c2 => c2.ID != c1.ID)).ToList();
             List<BO.Course> listOfUnRegisteredCourses = bl.GetAllCourses().Where(c1 => bl.GetAllCoursesPerStudent(curStu.ID).All(c2 => c2.ID != c1.ID)).ToList();
             courseDataGrid.DataContext = listOfUnRegisteredCourses;
         }
