@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public static class Tools
+    static class Tools
     {
         public static string ToStringProperty<T>(this T t, string suffix = "")
         {

@@ -24,44 +24,33 @@ namespace PL.SimpleWPF
     public partial class MainWindow : Window
     {
         IBL bl = BLFactory.GetBL("1");
-        ObservableCollection<BO.Student> ObserListOfStudents = new ObservableCollection<BO.Student>();
         public MainWindow()
         {
             InitializeComponent();
-
-            foreach (var item in bl.GetAllStudents())
-            {
-                ObserListOfStudents.Add(item);
-            }
-
-            graduationComboBox.ItemsSource = Enum.GetValues(typeof(BO.StudentGraduate));
-            statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.StudentStatus));
-            personalStatusComboBox.ItemsSource = Enum.GetValues(typeof(BO.PersonalStatus));
-
-
-            cbStudentID.DisplayMemberPath = "Name";//show only specific Property of object
-            cbStudentID.SelectedValuePath = "ID";//selection return only specific Property of object
-            cbStudentID.SelectedIndex = 0; //index of the object to be selected
-            cbStudentID.DataContext = ObserListOfStudents;
-
-
-
         }
 
-        private void cbStudentID_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnGO_Click(object sender, RoutedEventArgs e)
         {
-            BO.Student curStu = (cbStudentID.SelectedItem as BO.Student);
             
-            gridOneStudent.DataContext = curStu;
-
-            ObservableCollection<BO.StudentCourse> ObserListOfCourses = new ObservableCollection<BO.StudentCourse>();
-
-            foreach (var item in curStu.ListOfCourses)
+            if (rbStudents.IsChecked == true)
             {
-                ObserListOfCourses.Add(item);
+                StudentWindow win = new StudentWindow(bl);
+                win.Show();
             }
-            studentCourseDataGrid.DataContext = ObserListOfCourses; //curStu.ListOfCourses;//
+            else if (rbLecturers.IsChecked == true)
+            {
+                //LecturerWindow win = new LecturerWindow(bl);
+                //win.Show();
+                MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+            else
+            {
+                //CoursesWindow win = new CoursesWindow(bl);
+                //win.Show();
+                MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
 
+
+            }
 
         }
 

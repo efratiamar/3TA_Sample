@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ArrayOfLecturerInCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LecturerInCourse>
+    <PersonId>3</PersonId>
+    <CourseId>1</CourseId>
+    <Status>LECTURER</Status>
+    <GroupsAmount>2</GroupsAmount>
+  </LecturerInCourse>
+  <LecturerInCourse>
+    <PersonId>67</PersonId>
+    <CourseId>3</CourseId>
+    <Status>PRACTITIONER</Status>
+    <GroupsAmount>1</GroupsAmount>
+  </LecturerInCourse>
+  <LecturerInCourse>
+    <PersonId>67</PersonId>
+    <CourseId>3</CourseId>
+    <Status>LECTURER</Status>
+    <GroupsAmount>3</GroupsAmount>
+  </LecturerInCourse>
+</ArrayOfLecturerInCourse>
