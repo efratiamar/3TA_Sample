@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPerson xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Person>
+    <ID>36</ID>
+    <Name>David</Name>
+    <PersonalStatus>SINGLE</PersonalStatus>
+    <Street>Harekefet</Street>
+    <HouseNumber>55</HouseNumber>
+    <City>Tel-Aviv</City>
+    <BirthDate>17-Apr-85 12:00:00 AM</BirthDate>
+  </Person>
+  <Person>
+    <ID>15</ID>
+    <Name>Roni</Name>
+    <PersonalStatus>MARRIED</PersonalStatus>
+    <Street>Dayan</Street>
+    <HouseNumber>33</HouseNumber>
+    <City>Petach Tikva</City>
+    <BirthDate>14-Feb-98 12:00:00 AM</BirthDate>
+  </Person>
+  <Person>
+    <ID>3</ID>
+    <Name>Shira</Name>
+    <PersonalStatus>SINGLE</PersonalStatus>
+    <Street>Moshe</Street>
+    <HouseNumber>33</HouseNumber>
+    <City>Eilat</City>
+    <BirthDate>1995-10-13T00:00:00</BirthDate>
+  </Person>
+  <Person>
+    <ID>67</ID>
+    <Name>Gila</Name>
+    <PersonalStatus>MARRIED</PersonalStatus>
+    <Street>Marom</Street>
+    <HouseNumber>56</HouseNumber>
+    <City>Givataiim</City>
+    <BirthDate>1990-11-14T00:00:00</BirthDate>
+  </Person>
+</ArrayOfPerson>

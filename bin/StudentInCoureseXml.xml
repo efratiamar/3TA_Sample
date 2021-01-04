@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ArrayOfStudentInCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <StudentInCourse>
+    <PersonId>15</PersonId>
+    <CourseId>3</CourseId>
+    <Grade>100</Grade>
+  </StudentInCourse>
+  <StudentInCourse>
+    <PersonId>23</PersonId>
+    <CourseId>1</CourseId>
+    <Grade>0</Grade>
+  </StudentInCourse>
+</ArrayOfStudentInCourse>

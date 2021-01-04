@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Course>
+    <ID>1</ID>
+    <Number>153007</Number>
+    <Name>MiniProject with Windows Systems</Name>
+    <LectureHours>3</LectureHours>
+    <PracticeHours>1</PracticeHours>
+    <CreditPoint>3</CreditPoint>
+    <Year>2010</Year>
+    <Semester>A</Semester>
+  </Course>
+  <Course>
+    <ID>2</ID>
+    <Number>15005</Number>
+    <Name>Intro to CS</Name>
+    <LectureHours>3</LectureHours>
+    <PracticeHours>2</PracticeHours>
+    <CreditPoint>4</CreditPoint>
+    <Year>2011</Year>
+    <Semester>B</Semester>
+  </Course>
+  <Course>
+    <ID>3</ID>
+    <Number>15004</Number>
+    <Name>Data Structure 1</Name>
+    <LectureHours>3</LectureHours>
+    <PracticeHours>1</PracticeHours>
+    <CreditPoint>4</CreditPoint>
+    <Year>2014</Year>
+    <Semester>A</Semester>
+  </Course>
+  <Course>
+    <ID>4</ID>
+    <Number>15006</Number>
+    <Name>Data Structure 2</Name>
+    <LectureHours>3</LectureHours>
+    <PracticeHours>1</PracticeHours>
+    <CreditPoint>4</CreditPoint>
+    <Year>2014</Year>
+    <Semester>B</Semester>
+  </Course>
+</ArrayOfCourse>
