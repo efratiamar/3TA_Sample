@@ -193,7 +193,7 @@ namespace DS
                 }
             };
 
-            ListLecturers = new List<Lecturer>
+            List<Lecturer> ListLecturers = new List<Lecturer>
             {
                 new Lecturer
                 {
