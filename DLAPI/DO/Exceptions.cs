@@ -11,7 +11,7 @@ namespace DO
     {
         public int ID;
         public BadPersonIdException(int id) : base() => ID = id;
-        public BadPersonIdException(int id, string message) : 
+        public BadPersonIdException(int id, string message) :
             base(message) => ID = id;
         public BadPersonIdException(int id, string message, Exception innerException) : 
             base(message, innerException) => ID = id;

@@ -25,7 +25,7 @@ namespace DL
         #region Person
         public DO.Person GetPerson(int id)
         {
-            DO.Person per = DataSource.ListPersons.Find(p => p.ID == id);
+            DO.Person per = DataSource.Persons.Find(p => p.ID == id);
 
             if (per != null)
                 return per.Clone();
@@ -34,7 +34,7 @@ namespace DL
         }
         public IEnumerable<DO.Person> GetAllPersons()
         {
-            return from person in DataSource.ListPersons
+            return from person in DataSource.Persons
                    select person.Clone();
         }
         public IEnumerable<DO.Person> GetAllPersonsBy(Predicate<DO.Person> predicate)
@@ -43,9 +43,9 @@ namespace DL
         }
         public void AddPerson(DO.Person person)
         {
-            if (DataSource.ListPersons.FirstOrDefault(p => p.ID == person.ID) != null)
+            if (DataSource.Persons.FirstOrDefault(p => p.ID == person.ID) != null)
                 throw new DO.BadPersonIdException(person.ID, "Duplicate person ID");
-            DataSource.ListPersons.Add(person.Clone());
+            DataSource.Persons.Add(person.Clone());
         }
 
         public void DeletePerson(int id)
@@ -67,8 +67,9 @@ namespace DL
         #region Student
         public DO.Student GetStudent(int id)
         {
-            DO.Student stu = DataSource.ListStudents.Find(p => p.ID == id);
+            // sleep for demo of bkg worker - not needed in the final code of a project
             try { Thread.Sleep(2000); } catch (ThreadInterruptedException ex) { }
+            DO.Student stu = DataSource.Students.Find(p => p.ID == id);
             if (stu != null)
                 return stu.Clone();
             else
@@ -76,26 +77,21 @@ namespace DL
         }
         public void AddStudent(DO.Student student)
         {
-            if (DataSource.ListStudents.FirstOrDefault(s => s.ID == student.ID) != null)
+            if (DataSource.Students.FirstOrDefault(s => s.ID == student.ID) != null)
                 throw new DO.BadPersonIdException(student.ID, "Duplicate student ID");
-            if (DataSource.ListPersons.FirstOrDefault(p => p.ID == student.ID) == null)
+            if (DataSource.Persons.FirstOrDefault(p => p.ID == student.ID) == null)
                 throw new DO.BadPersonIdException(student.ID, "Missing person ID");
-            DataSource.ListStudents.Add(student.Clone());
+            DataSource.Students.Add(student.Clone());
         }
         public IEnumerable<DO.Student> GetAllStudents()
         {
-            return from student in DataSource.ListStudents
+            return from student in DataSource.Students
                    select student.Clone();
         }
-        public IEnumerable<object> GetStudentFields(Func<int, string, object> generate)
-        {
-            return from student in DataSource.ListStudents
-                   select generate(student.ID, GetPerson(student.ID).Name);
-        }
-
+        
         public IEnumerable<object> GetStudentListWithSelectedFields(Func<DO.Student,object> generate)
         {
-            return from student in DataSource.ListStudents
+            return from student in DataSource.Students
                    select generate(student);
         }
         public void UpdateStudent(DO.Student student)
@@ -136,7 +132,7 @@ namespace DL
         #region Course
         public DO.Course GetCourse(int id)
         {
-            return DataSource.ListCourses.Find(c => c.ID == id).Clone();
+            return DataSource.Courses.Find(c => c.ID == id).Clone();
         }
         #endregion Course
     }

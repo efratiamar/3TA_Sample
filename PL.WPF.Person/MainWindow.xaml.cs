@@ -96,16 +96,9 @@ namespace PL.WPF.Person
             Button btn = (Button)sender;
             StackPanel parent = (StackPanel)btn.Parent;
             Label lbl = (Label)parent.FindName("lbListed");
-            MessageBox.Show(lbl.Tag.ToString());
-            MessageBox.Show(((PO.ListedPerson)btn.DataContext).Person.Name);
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            System.Windows.Data.CollectionViewSource studentViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("studentViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // studentViewSource.Source = [generic data source]
+            new Trials(viewModel).Show();
+            //MessageBox.Show(lbl.Tag.ToString());
+            //MessageBox.Show(((PO.ListedPerson)btn.DataContext).Person.Name);
         }
     }
 }
