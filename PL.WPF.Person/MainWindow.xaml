@@ -6,12 +6,11 @@
         xmlns:local="clr-namespace:PL.WPF.Person"
         xmlns:po="clr-namespace:PO"
         mc:Ignorable="d"
-        Title="MainWindow" Height="Auto" Width="Auto" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+        Title="MainWindow" Height="Auto" Width="Auto" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Window.Resources>
         <Style x:Key="style" TargetType="Control">
             <Setter Property="Background" Value="Turquoise"></Setter>
         </Style>
-        <CollectionViewSource x:Key="studentViewSource" d:DesignSource="{d:DesignInstance {x:Type po:Student}, CreateList=True}"/>
     </Window.Resources>
     <Grid x:Name="gridWindow" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
         <Grid.RowDefinitions>
@@ -36,6 +35,8 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+        <TextBox HorizontalAlignment="Right" Height="25" Margin="0,15,85,0" VerticalAlignment="Top" Width="120"
+                 Background="{Binding Path=Text, RelativeSource={RelativeSource Mode=Self}}"/>
         <Button x:Name="btReset" Content="Reset" HorizontalAlignment="Right" Height="25" Margin="0,15,15,0" VerticalAlignment="Top" Width="60"
                 Click="btReset_Click" >
             <Button.Style>

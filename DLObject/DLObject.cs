@@ -83,7 +83,7 @@ namespace DL
         public DO.Student GetStudent(int id)
         {
             DO.Student stu = DataSource.ListStudents.Find(p => p.ID == id);
-            try { Thread.Sleep(2000); } catch (ThreadInterruptedException ex) { }
+            try { Thread.Sleep(2000); } catch (ThreadInterruptedException e) { }
             if (stu != null)
                 return stu.Clone();
             else

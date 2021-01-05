@@ -77,8 +77,9 @@ namespace BL
             //       let student = item as BO.Student
             //       orderby student.ID
             //       select student;
-            return from item in dl.GetAllStudents()
-                   select studentDoBoAdapter(item);
+            return from studentDO in dl.GetAllStudents()
+                   orderby studentDO.ID 
+                   select studentDoBoAdapter(studentDO);
         }
         public IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate)
         {
@@ -87,14 +88,14 @@ namespace BL
 
         public IEnumerable<BO.ListedPerson> GetStudentIDNameList()
         {
-            return from item in dl.GetStudentListWithSelectedFields((Func<DO.Student, object>)((stud) =>
+            return from item in dl.GetStudentListWithSelectedFields((studentDO) =>
                     {
                         try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                        return new BO.ListedPerson() { ID = stud.ID, Name = dl.GetPerson(stud.ID).Name };
-                    }))
-                   let student = item as BO.ListedPerson
+                        return new BO.ListedPerson() { ID = studentDO.ID, Name = dl.GetPerson(studentDO.ID).Name };
+                    })
+                   let studentBO = item as BO.ListedPerson
                    //orderby student.ID
-                   select student;
+                   select studentBO;
         }
 
         public void UpdateStudentPersonalDetails(BO.Student student)

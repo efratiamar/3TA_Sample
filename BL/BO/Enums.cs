@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public enum PersonalStatus { SINGLE, MARRIED, DEVORSED, WIDOWER }
+    public enum PersonalStatus { SINGLE, MARRIED, DIVORCED, WIDOW }
     public enum Semester { ELUL, A, B, YEAR, SUMMER }
-    public enum StudentStatus { ACTIVE, SUSPENDED, ACADEMIC_VACATION, FINISHED }
+    public enum StudentStatus { ACTIVE, SUSPENDED, ACADEMIC_VACATION, FINISHED, LEFT }
     public enum StudentGraduate { BSC, MSC, PHD, BA, MA, MD }
     public enum LecturerStatus { STUFF, SABBATICAL, ADJUNCT, PENSIONER, FIRED, LEFT }
     public enum LecturerPosition { TEACHER, SENIOR_TEACHER, LECTURER, SENIOR_LECTURER, ASSISTANT_PROFESSOR, ASSOCIATE_PROFESSOR, PROFESSOR, ASSISTANT_TEACHER_A, ASSISTANT_TEACHER_B }
