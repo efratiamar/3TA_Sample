@@ -21,7 +21,7 @@ namespace DS
 
         static DataSource()
         {
-            InitAllLists();
+            InitAllLists();            
         }
         static void InitAllLists()
         {

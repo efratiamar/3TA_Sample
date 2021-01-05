@@ -7,15 +7,15 @@
     <Graduation>PHD</Graduation>
   </Student>
   <Student>
-    <ID>36</ID>
-    <StartYear>2020</StartYear>
-    <Status>SUSPENDED</Status>
-    <Graduation>MSC</Graduation>
-  </Student>
-  <Student>
     <ID>15</ID>
     <StartYear>2013</StartYear>
     <Status>FINISHED</Status>
     <Graduation>BA</Graduation>
+  </Student>
+  <Student>
+    <ID>36</ID>
+    <StartYear>2020</StartYear>
+    <Status>SUSPENDED</Status>
+    <Graduation>MSC</Graduation>
   </Student>
 </ArrayOfStudent>

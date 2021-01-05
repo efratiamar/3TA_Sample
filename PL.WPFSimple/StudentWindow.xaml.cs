@@ -47,7 +47,7 @@ namespace PL.SimpleWPF
 
         void RefreshAllStudentComboBox()
         {
-            cbStudentID.DataContext = bl.GetAllStudents().ToList(); //ObserListOfStudents;
+            cbStudentID.DataContext = bl.GetAllStudents(); 
         }
 
         void RefreshAllRegisteredCoursesGrid()
@@ -99,7 +99,6 @@ namespace PL.SimpleWPF
                 if (curStu != null)
                 {
                     bl.DeleteStudent(curStu.ID);
-                    BO.Student stuToDel = curStu;
                     
                     RefreshAllRegisteredCoursesGrid();
                     RefreshAllNotRegisteredCoursesGrid();

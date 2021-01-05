@@ -8,18 +8,16 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace DL
-
 {
     class XMLTools
     {
         static string dir = @"xml\";
-
         static XMLTools()
         {
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
         }
-
+        #region SaveLoadWithXElement
         public static void SaveListToXMLElement(XElement rootElem, string filePath)
         {
             try
@@ -52,7 +50,9 @@ namespace DL
                 throw new DO.XMLFileLoadCreateException(filePath, $"fail to load xml file: {filePath}", ex);
             }
         }
+        #endregion
 
+        #region SaveLoadWithXMLSerializer
         public static void SaveListToXMLSerializer<T>(List<T> list, string filePath)
         {
             try
@@ -67,7 +67,6 @@ namespace DL
                 throw new DO.XMLFileLoadCreateException(filePath, $"fail to create xml file: {filePath}", ex);
             }
         }
-
         public static List<T> LoadListFromXMLSerializer<T>(string filePath)
         {
             try
@@ -89,6 +88,6 @@ namespace DL
                 throw new DO.XMLFileLoadCreateException(filePath, $"fail to load xml file: {filePath}", ex);
             }
         }
-
+        #endregion
     }
 }

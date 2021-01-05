@@ -226,7 +226,7 @@ namespace DL
             else
                 throw new DO.BadPersonIdException(student.ID, $"bad student id: {student.ID}");
 
-            XMLTools.SaveListToXMLSerializer(ListStudents, studentsPath);
+            XMLTools.SaveListToXMLSerializer(ListStudents, studentsPath);            
         }
 
         public void UpdateStudent(int id, Action<DO.Student> update)
