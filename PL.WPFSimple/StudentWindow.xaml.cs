@@ -37,7 +37,7 @@ namespace PL.SimpleWPF
 
             cbStudentID.DisplayMemberPath = "Name";//show only specific Property of object
             cbStudentID.SelectedValuePath = "ID";//selection return only specific Property of object
-            cbStudentID.SelectedIndex = 0; //index of the object to be selected
+            //cbStudentID.SelectedIndex = 0; //index of the object to be selected
             RefreshAllStudentComboBox();
 
             studentCourseDataGrid.IsReadOnly = true;
@@ -47,7 +47,8 @@ namespace PL.SimpleWPF
 
         void RefreshAllStudentComboBox()
         {
-            cbStudentID.DataContext = bl.GetAllStudents(); 
+            cbStudentID.DataContext = bl.GetAllStudents();
+            cbStudentID.SelectedIndex = 0; //index of the object to be selected
         }
 
         void RefreshAllRegisteredCoursesGrid()
@@ -189,7 +190,17 @@ namespace PL.SimpleWPF
 
         private void btAddStudent_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            AddStudentWindow win = new AddStudentWindow(bl);
+            win.Closing += WinAddStudent_Closing;
+            win.ShowDialog();
+        }
+
+        private void WinAddStudent_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            RefreshAllRegisteredCoursesGrid();
+            RefreshAllNotRegisteredCoursesGrid();
+            //???cbStudentID.SelectedIndex = 0; //index of the object to be selected
+            RefreshAllStudentComboBox();
         }
     }
 }

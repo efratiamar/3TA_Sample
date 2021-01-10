@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.SimpleWPF"
         mc:Ignorable="d"
-        Title="GradeWindow" Height="168.163" Width="235.804">
+        Title="Update Grade" Height="168.163" Width="235.804">
     <Grid>
         <Label Content="Select updated grade:" HorizontalAlignment="Left" Height="30" Margin="10,49,0,0" VerticalAlignment="Top" Width="130"/>
         <ComboBox x:Name="cbGrade" Text="{Binding Grade}" HorizontalAlignment="Left" Margin="145,49,0,0" VerticalAlignment="Top" Width="50" Height="23"/>
