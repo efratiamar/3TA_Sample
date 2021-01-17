@@ -34,6 +34,7 @@ namespace PL.SimpleWPF
             graduationComboBox.ItemsSource = Enum.GetValues(typeof(BO.StudentGraduate));
             statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.StudentStatus));
             personalStatusComboBox.ItemsSource = Enum.GetValues(typeof(BO.PersonalStatus));
+
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -42,8 +43,9 @@ namespace PL.SimpleWPF
             if (res == MessageBoxResult.No)
                 return;
 
-            //missing:
-            //test each textbox, combobox value with TKINIT KELET etc.
+            //code missing:
+            //test each textbox, combobox value with more TKINIT KELET etc.
+            // make sure each field has value
             //if not takin shoe message box, and return.
             //else
             try
@@ -62,12 +64,12 @@ namespace PL.SimpleWPF
             this.Close();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void My_Validation_Error(object sender, ValidationErrorEventArgs e)
         {
-
-            System.Windows.Data.CollectionViewSource studentViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("studentViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // studentViewSource.Source = [generic data source]
+            if (e.Action == ValidationErrorEventAction.Added)
+                btnAdd.IsEnabled = false; //e.Error.Exception.Message;
+            else
+                btnAdd.IsEnabled = true; ; //errorMessages.Remove(e.Error.Exception.Message);
         }
     }
 }

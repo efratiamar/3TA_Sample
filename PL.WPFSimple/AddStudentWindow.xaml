@@ -6,10 +6,8 @@
         xmlns:local="clr-namespace:PL.SimpleWPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.SimpleWPF.AddStudentWindow"
         mc:Ignorable="d"
-        Title="Add New Student" Height="537.755" Width="566.955" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
-    <Window.Resources>
-        <CollectionViewSource x:Key="studentViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Student}, CreateList=True}"/>
-    </Window.Resources>
+        Validation.Error="My_Validation_Error"
+        Title="Add New Student" Height="537.755" Width="566.955" WindowStartupLocation="CenterScreen" >
 
     <Grid>
 
@@ -37,7 +35,7 @@
 
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="ID:"/>
             <TextBox x:Name="iDTextBox" Width="120" VerticalAlignment="Center" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="2" Content="{Binding ElementName=iDTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+            <Label Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="2" Content="{Binding ElementName=iDTextBox, Path=(Validation.Errors)[0].ErrorContent}"  Foreground="Red"/>
 
 
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Name:"/>
@@ -48,7 +46,7 @@
 
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="House Number:"/>
             <TextBox x:Name="houseNumberTextBox" Width="120" VerticalAlignment="Center" Text="{Binding HouseNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="2" Content="{Binding ElementName=houseNumberTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+            <Label Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="2" Content="{Binding ElementName=houseNumberTextBox, Path=(Validation.Errors)[0].ErrorContent}"  Foreground="Red"/>
 
             <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="City:"/>
             <TextBox x:Name="cityTextBox" Width="120" VerticalAlignment="Center" Text="{Binding City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
@@ -61,7 +59,7 @@
 
             <Label VerticalAlignment="Center" Grid.Row="7" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Start Year:"/>
             <TextBox x:Name="startYearTextBox" Width="120" VerticalAlignment="Center" Text="{Binding StartYear, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="7" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label Grid.Row="7" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="2" Content="{Binding ElementName=startYearTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+            <Label Grid.Row="7" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="2" Content="{Binding ElementName=startYearTextBox, Path=(Validation.Errors)[0].ErrorContent}"  Foreground="Red" />
 
 
             <Label VerticalAlignment="Center" Grid.Row="8" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Status:"/>
@@ -72,7 +70,7 @@
 
             <Label Content="Duration:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
             <TextBox x:Name="durationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="10" Text="{Binding Duration, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Grid.Row="10" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="2" Content="{Binding ElementName=durationTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+            <Label Grid.Row="10" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="2" Content="{Binding ElementName=durationTextBox, Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red" />
 
 
 
