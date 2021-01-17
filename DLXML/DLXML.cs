@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -48,7 +49,8 @@ namespace DL
                                 HouseNumber = Int32.Parse(per.Element("HouseNumber").Value),
                                 City = per.Element("City").Value,
                                 BirthDate = DateTime.Parse(per.Element("BirthDate").Value),
-                                PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), per.Element("PersonalStatus").Value)                              
+                                PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), per.Element("PersonalStatus").Value),
+                                Duration = TimeSpan.ParseExact(per.Element("Duration").Value,"hh\\:mm\\:ss", CultureInfo.InvariantCulture)
                             }
                         ).FirstOrDefault();
 
@@ -70,7 +72,8 @@ namespace DL
                         HouseNumber = Int32.Parse(p.Element("HouseNumber").Value),
                         City = p.Element("City").Value,
                         BirthDate = DateTime.Parse(p.Element("BirthDate").Value),
-                        PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), p.Element("PersonalStatus").Value)
+                        PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), p.Element("PersonalStatus").Value),
+                        Duration = TimeSpan.ParseExact(p.Element("Duration").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
                     }
                    );
         }
@@ -87,7 +90,8 @@ namespace DL
                        HouseNumber = Int32.Parse(p.Element("HouseNumber").Value),
                        City = p.Element("City").Value,
                        BirthDate = DateTime.Parse(p.Element("BirthDate").Value),
-                       PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), p.Element("PersonalStatus").Value)
+                       PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), p.Element("PersonalStatus").Value),
+                       Duration = TimeSpan.ParseExact(p.Element("Duration").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
                    }
                    where predicate(p1)
                    select p1;
@@ -109,7 +113,8 @@ namespace DL
                                    new XElement("HouseNumber", person.HouseNumber.ToString()),
                                    new XElement("City", person.City),
                                    new XElement("BirthDate", person.BirthDate),
-                                   new XElement("PersonalStatus", person.PersonalStatus.ToString()));
+                                   new XElement("PersonalStatus", person.PersonalStatus.ToString()),
+                                   new XElement("Duration", person.Duration.ToString()));
 
             personsRootElem.Add(personElem);
             
@@ -151,6 +156,7 @@ namespace DL
                 per.Element("City").Value = person.City;
                 per.Element("BirthDate").Value = person.BirthDate.ToString();
                 per.Element("PersonalStatus").Value = person.PersonalStatus.ToString();
+                per.Element("Duration").Value = person.Duration.ToString();
 
                 XMLTools.SaveListToXMLElement(personsRootElem, personsPath);
             }

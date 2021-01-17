@@ -61,5 +61,13 @@ namespace PL.SimpleWPF
         {
             this.Close();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource studentViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("studentViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // studentViewSource.Source = [generic data source]
+        }
     }
 }

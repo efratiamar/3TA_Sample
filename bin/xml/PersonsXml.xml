@@ -8,6 +8,7 @@
     <HouseNumber>55</HouseNumber>
     <City>Tel-Aviv</City>
     <BirthDate>17-Apr-85 12:00:00 AM</BirthDate>
+    <Duration>02:12:33</Duration>
   </Person>
   <Person>
     <ID>23</ID>
@@ -16,16 +17,18 @@
     <Street>Moshe Dayan</Street>
     <HouseNumber>145</HouseNumber>
     <City>Jerusalem</City>
-    <BirthDate>13-Oct-95 12:00:00 AM</BirthDate>
+    <BirthDate>1995-10-13T00:00:00</BirthDate>
+    <Duration>02:12:30</Duration>
   </Person>
   <Person>
     <ID>15</ID>
     <Name>Roni</Name>
     <PersonalStatus>MARRIED</PersonalStatus>
     <Street>Dayan</Street>
-    <HouseNumber>22</HouseNumber>
+    <HouseNumber>33</HouseNumber>
     <City>Petach Tikva</City>
     <BirthDate>14-Feb-98 12:00:00 AM</BirthDate>
+    <Duration>12:44:00</Duration>
   </Person>
   <Person>
     <ID>3</ID>
@@ -35,6 +38,7 @@
     <HouseNumber>33</HouseNumber>
     <City>Eilat</City>
     <BirthDate>1995-10-13T00:00:00</BirthDate>
+    <Duration>02:22:30</Duration>
   </Person>
   <Person>
     <ID>67</ID>
@@ -44,32 +48,36 @@
     <HouseNumber>56</HouseNumber>
     <City>Givataiim</City>
     <BirthDate>1990-11-14T00:00:00</BirthDate>
+    <Duration>02:22:30</Duration>
   </Person>
   <Person>
-    <ID>13</ID>
-    <Name>Yafa Levi</Name>
-    <Street>Shimshon</Street>
-    <HouseNumber>44</HouseNumber>
-    <City>Jerusalem</City>
+    <ID>99</ID>
+    <Name>aaa</Name>
+    <Street>aaa</Street>
+    <HouseNumber>99</HouseNumber>
+    <City>aaa</City>
+    <BirthDate>2001-01-25T00:00:00</BirthDate>
+    <PersonalStatus>MARRIED</PersonalStatus>
+    <Duration>02:22:30</Duration>
+  </Person>
+  <Person>
+    <ID>22</ID>
+    <Name>bbb</Name>
+    <Street>bbb</Street>
+    <HouseNumber>5</HouseNumber>
+    <City>bbb</City>
     <BirthDate>17-Jan-01 12:00:00 AM</BirthDate>
-    <PersonalStatus>MARRIED</PersonalStatus>
+    <PersonalStatus>DIVORCED</PersonalStatus>
+    <Duration>04:12:12</Duration>
   </Person>
   <Person>
-    <ID>77</ID>
-    <Name>Gila</Name>
-    <Street>abc</Street>
-    <HouseNumber>44</HouseNumber>
-    <City>PT</City>
-    <BirthDate>2001-01-24T00:00:00</BirthDate>
-    <PersonalStatus>MARRIED</PersonalStatus>
-  </Person>
-  <Person>
-    <ID>88</ID>
-    <Name>Ester</Name>
-    <Street>sss</Street>
-    <HouseNumber>55</HouseNumber>
-    <City>xxx</City>
-    <BirthDate>2001-01-24T00:00:00</BirthDate>
-    <PersonalStatus>MARRIED</PersonalStatus>
+    <ID>55</ID>
+    <Name>fff</Name>
+    <Street>fff</Street>
+    <HouseNumber>0</HouseNumber>
+    <City>fff</City>
+    <BirthDate>01-Jan-01 12:00:00 AM</BirthDate>
+    <PersonalStatus>SINGLE</PersonalStatus>
+    <Duration>13:14:13</Duration>
   </Person>
 </ArrayOfPerson>

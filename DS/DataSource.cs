@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,10 +19,10 @@ namespace DS
         public static List<Lecturer> ListLecturers;
         public static List<LecturerInCourse> ListLectInCourses;
         public static List<StudentInCourse> ListStudInCourses;
-
+        
         static DataSource()
         {
-            InitAllLists();            
+            InitAllLists();
         }
         static void InitAllLists()
         {
@@ -35,7 +36,8 @@ namespace DS
                     HouseNumber = 44,
                     City = "Tel-Aviv",
                     PersonalStatus = PersonalStatus.MARRIED,
-                    BirthDate =  DateTime.ParseExact("24.03.85", "dd.MM.yy", null)
+                    BirthDate =  DateTime.ParseExact("12.03.85", "dd.MM.yy", null),
+                    Duration = TimeSpan.ParseExact("02:39:56","hh\\:mm\\:ss",CultureInfo.InvariantCulture)
                 },
 
                 new Person
@@ -46,7 +48,9 @@ namespace DS
                     HouseNumber = 145,
                     City = "Jerusalem",
                     PersonalStatus = PersonalStatus.SINGLE,
-                    BirthDate =  DateTime.ParseExact("27.12.95", "dd.MM.yy", null)
+                    BirthDate =  DateTime.ParseExact("27.12.95", "dd.MM.yy", null),
+                    Duration = TimeSpan.ParseExact("02:39:56","hh\\:mm\\:ss",CultureInfo.InvariantCulture)
+
                 },
 
                 new Person
@@ -57,7 +61,9 @@ namespace DS
                     HouseNumber = 33,
                     City = "Petach Tikva",
                     PersonalStatus = PersonalStatus.MARRIED,
-                    BirthDate =  DateTime.ParseExact("14.11.97", "dd.MM.yy", null)
+                    BirthDate =  DateTime.ParseExact("14.11.97", "dd.MM.yy", null),
+                    Duration = TimeSpan.ParseExact("02:39:56","hh\\:mm\\:ss",CultureInfo.InvariantCulture)
+
                 },
 
                 new Person
@@ -68,7 +74,9 @@ namespace DS
                     HouseNumber = 33,
                     City = "Eilat",
                     PersonalStatus = PersonalStatus.SINGLE,
-                    BirthDate =  DateTime.ParseExact("24.08.99", "dd.MM.yy", null)
+                    BirthDate =  DateTime.ParseExact("24.08.99", "dd.MM.yy", null),
+                    Duration = TimeSpan.ParseExact("02:39:56","hh\\:mm\\:ss",CultureInfo.InvariantCulture)
+
                 },
 
                 new Person
@@ -79,7 +87,9 @@ namespace DS
                     HouseNumber = 56,
                     City = "Givataiim",
                     PersonalStatus = PersonalStatus.MARRIED,
-                    BirthDate =  DateTime.ParseExact("23.12.77", "dd.MM.yy", null)
+                    BirthDate =  DateTime.ParseExact("23.12.77", "dd.MM.yy", null),
+                    Duration = TimeSpan.ParseExact("02:39:56","hh\\:mm\\:ss",CultureInfo.InvariantCulture)
+
                 }
 
 

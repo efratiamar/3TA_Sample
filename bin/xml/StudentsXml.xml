@@ -1,12 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfStudent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Student>
-    <ID>36</ID>
-    <StartYear>2020</StartYear>
-    <Status>SUSPENDED</Status>
-    <Graduation>MSC</Graduation>
-  </Student>
-  <Student>
     <ID>23</ID>
     <StartYear>2017</StartYear>
     <Status>FINISHED</Status>
@@ -16,24 +10,24 @@
     <ID>15</ID>
     <StartYear>2013</StartYear>
     <Status>FINISHED</Status>
-    <Graduation>BA</Graduation>
+    <Graduation>MSC</Graduation>
   </Student>
   <Student>
-    <ID>13</ID>
+    <ID>36</ID>
     <StartYear>2020</StartYear>
     <Status>SUSPENDED</Status>
-    <Graduation>BA</Graduation>
+    <Graduation>MSC</Graduation>
   </Student>
   <Student>
-    <ID>77</ID>
-    <StartYear>9019</StartYear>
+    <ID>22</ID>
+    <StartYear>22</StartYear>
     <Status>ACTIVE</Status>
     <Graduation>BSC</Graduation>
   </Student>
   <Student>
-    <ID>88</ID>
-    <StartYear>2021</StartYear>
+    <ID>55</ID>
+    <StartYear>0</StartYear>
     <Status>ACTIVE</Status>
-    <Graduation>BA</Graduation>
+    <Graduation>BSC</Graduation>
   </Student>
 </ArrayOfStudent>

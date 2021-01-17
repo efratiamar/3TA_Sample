@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.SimpleWPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.SimpleWPF.StudentWindow"
         mc:Ignorable="d"
-        Title="Student" Height="488.489" Width="1287.15" WindowStartupLocation="CenterScreen" >
+        Title="Student" Height="526.787" Width="1287.15" WindowStartupLocation="CenterScreen" >
 
     <Grid Margin="0,0,0.2,-0.8" >
         <Grid.RowDefinitions>
@@ -23,12 +23,13 @@
                   Grid.Row="0" Height="25" Margin="141,15,0,0" Width="123"
                   ItemsSource="{Binding}" 
                   HorizontalContentAlignment="Left" VerticalContentAlignment="Top" SelectionChanged="cbStudentID_SelectionChanged"/>
-        <Grid x:Name="gridOneStudent"  HorizontalAlignment="Left" Margin="39,76,0,0" VerticalAlignment="Top" Height="320" Width="225">
+        <Grid x:Name="gridOneStudent"  HorizontalAlignment="Left" Margin="39,76,0,0" VerticalAlignment="Top" Height="357" Width="225">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -70,7 +71,11 @@
 
             <Label Content="Graduation:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
             <ComboBox x:Name="graduationComboBox" Grid.Column="1" SelectedItem="{Binding Graduation}" HorizontalAlignment="Left" Height="Auto"  Margin="3" Grid.Row="9" VerticalAlignment="Center" Width="120"/>
-            
+
+            <Label Content="Duration:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
+            <TextBox x:Name="durationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="10" Text="{Binding Duration, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+
         </Grid>
         <DataGrid x:Name="studentCourseDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="21,80,30,17" RowDetailsVisibilityMode="VisibleWhenSelected" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
             <DataGrid.RenderTransform>

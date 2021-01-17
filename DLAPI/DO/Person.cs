@@ -15,6 +15,8 @@ namespace DO
         public int HouseNumber { get; set; }
         public string City { get; set; }
         public DateTime BirthDate { get; set; }
+        public TimeSpan Duration { get; set; }
+
         public override string ToString()
         {
             return this.ToStringProperty();

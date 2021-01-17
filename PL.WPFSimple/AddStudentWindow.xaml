@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:PL.SimpleWPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.SimpleWPF.AddStudentWindow"
         mc:Ignorable="d"
-        Title="Add New Student" Height="440.955" Width="566.955" WindowStartupLocation="CenterScreen">
+        Title="Add New Student" Height="537.755" Width="566.955" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="studentViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Student}, CreateList=True}"/>
+    </Window.Resources>
 
     <Grid>
 
@@ -22,7 +25,10 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
             </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -48,7 +54,7 @@
             <TextBox x:Name="cityTextBox" Width="120" VerticalAlignment="Center" Text="{Binding City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
 
             <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Birth Date:"/>
-            <DatePicker x:Name="birthDateDatePicker" VerticalAlignment="Center" SelectedDate="{Binding BirthDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="1"/>
+            <DatePicker x:Name="birthDateDatePicker" VerticalAlignment="Center" SelectedDate="{Binding BirthDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3,4,0,4" HorizontalAlignment="Left" Grid.Column="1" Width="120"/>
 
             <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Personal Status:"/>
             <ComboBox x:Name="personalStatusComboBox" Width="120" VerticalAlignment="Center" Grid.Row="6" Margin="3" SelectedItem="{Binding PersonalStatus}" Height="Auto" HorizontalAlignment="Left"  Grid.Column="1"/>
@@ -58,16 +64,22 @@
             <Label Grid.Row="7" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="2" Content="{Binding ElementName=startYearTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
 
 
-
             <Label VerticalAlignment="Center" Grid.Row="8" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Status:"/>
             <ComboBox x:Name="statusComboBox" Width="120" VerticalAlignment="Center" Grid.Row="8" Margin="3" SelectedItem="{Binding Status}" Height="Auto" HorizontalAlignment="Left"  Grid.Column="1"/>
 
             <Label VerticalAlignment="Center" Grid.Row="9" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Graduation:"/>
             <ComboBox x:Name="graduationComboBox" Width="120" VerticalAlignment="Center" Grid.Row="9" Margin="3" SelectedItem="{Binding Graduation}" Height="Auto" HorizontalAlignment="Left"  Grid.Column="1"/>
 
+            <Label Content="Duration:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
+            <TextBox x:Name="durationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="10" Text="{Binding Duration, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Row="10" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="2" Content="{Binding ElementName=durationTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+
+
+
         </Grid>
-        <Button x:Name="btnAdd" Content="Add Student" HorizontalAlignment="Left" Margin="51,362,0,0" VerticalAlignment="Top" Width="106" Height="28" Click="btnAdd_Click"/>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="183,362,0,0" VerticalAlignment="Top" Width="93" Height="28" Click="btnCancel_Click"/>
+        <Button x:Name="btnAdd" Content="Add Student" HorizontalAlignment="Left" Margin="42,424,0,0" VerticalAlignment="Top" Width="106" Height="28" Click="btnAdd_Click"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="178,424,0,0" VerticalAlignment="Top" Width="93" Height="28" Click="btnCancel_Click"/>
+
 
     </Grid>
 </Window>
