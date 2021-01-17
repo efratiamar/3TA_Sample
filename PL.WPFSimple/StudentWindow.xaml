@@ -109,10 +109,10 @@
         </DataGrid>
         <Label Content="List of Courses for selected Student:" HorizontalAlignment="Left" Margin="21,49,0,0" VerticalAlignment="Top" Height="23" Width="209" Grid.Column="1"/>
 
-        <Button x:Name="btDeleteStudent" Content="Delete Current Student" HorizontalAlignment="Left" Margin="21,19,0,0" VerticalAlignment="Top" Width="219" Height="28" Background="#FFC56853" Grid.Column="1" Click="btDeleteStudent_Click" Grid.Row="1"/>
+        <Button x:Name="btDeleteStudent" Content="Delete Current Student" HorizontalAlignment="Left" Margin="21,19,0,0" VerticalAlignment="Top" Width="219" Height="28" Background="BlueViolet" Grid.Column="1" Click="btDeleteStudent_Click" Grid.Row="1"/>
         <Button x:Name="btAddStudent" Content="Add New Student" HorizontalAlignment="Left" Margin="26,19,0,0" VerticalAlignment="Top" Width="141" Height="34" Background="#FF6DB469" Grid.Column="2" Grid.Row="1" Click="btAddStudent_Click"/>
 
-        <Button x:Name="btUpdateStudent" Content="Aplly Changes on Student Details" HorizontalAlignment="Left" Margin="19,19,0,0" VerticalAlignment="Top" Width="234" Height="28" Background="#FFD1DA16" Click="btUpdateStudent_Click" Grid.Row="1"/>
+        <Button x:Name="btUpdateStudent" Content="Aplly Changes on Student Details" HorizontalAlignment="Left" Margin="19,19,0,0" VerticalAlignment="Top" Width="234" Height="28" Background="DeepPink" Click="btUpdateStudent_Click" Grid.Row="1"/>
         
         <Label Content="List of All Courses in University:" Grid.Column="2" HorizontalAlignment="Left" Margin="26,54,0,0" VerticalAlignment="Top" Height="23" Width="413"/>
         

@@ -144,7 +144,37 @@ namespace BL
             }
         }
 
-    #endregion
+        public void AddStudent(Student student)
+        {
+            //Add new student  (DO.Person + DO.Student)
+            //with no courses (courses will be added one by one through AddStudentInCourse()
+            
+            //Add DO.Person            
+            DO.Person personDO = new DO.Person();
+            student.CopyPropertiesTo(personDO);
+            try
+            {
+                dl.AddPerson(personDO);
+            }
+            catch (DO.BadPersonIdException ex)
+            {
+                throw new BO.BadStudentIdException("Student ID is illegal", ex);
+            }
+
+            //Add DO.Student            
+            DO.Student studentDO = new DO.Student();
+            student.CopyPropertiesTo(studentDO);
+            try
+            {
+                dl.AddStudent(studentDO);
+            }
+            catch (DO.BadPersonIdException ex)
+            {
+                throw new BO.BadStudentIdException("Student ID is illegal", ex);
+            }
+        }
+
+        #endregion
 
         #region StudentIn Course
         public void AddStudentInCourse(int perID, int courseID, float grade = 0)
@@ -209,6 +239,8 @@ namespace BL
                                       let course = dl.GetCourse(sic.CourseId)
                                       select course.CopyToStudentCourse(sic);
         }
+
+
 
         #endregion
 

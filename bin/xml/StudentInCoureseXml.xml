@@ -10,4 +10,14 @@
     <CourseId>1</CourseId>
     <Grade>0</Grade>
   </StudentInCourse>
+  <StudentInCourse>
+    <PersonId>13</PersonId>
+    <CourseId>1</CourseId>
+    <Grade>0</Grade>
+  </StudentInCourse>
+  <StudentInCourse>
+    <PersonId>13</PersonId>
+    <CourseId>2</CourseId>
+    <Grade>0</Grade>
+  </StudentInCourse>
 </ArrayOfStudentInCourse>

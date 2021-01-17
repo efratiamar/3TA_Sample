@@ -42,18 +42,18 @@ namespace PL.SimpleWPF
             if (res == MessageBoxResult.No)
                 return;
 
-            //test each field
-
+            //missing:
+            //test each textbox, combobox value with TKINIT KELET etc.
+            //if not takin shoe message box, and return.
             //else
             try
-            {
-                
-                //bl.AddStudent(newStu);
+            {                
+                bl.AddStudent(newStu);
                 this.Close();
             }
-            catch //(BO.BadStudentIdException ex)
+            catch (BO.BadStudentIdException ex)
             {
-                //MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

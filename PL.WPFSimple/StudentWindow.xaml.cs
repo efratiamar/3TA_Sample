@@ -37,7 +37,6 @@ namespace PL.SimpleWPF
 
             cbStudentID.DisplayMemberPath = "Name";//show only specific Property of object
             cbStudentID.SelectedValuePath = "ID";//selection return only specific Property of object
-            //cbStudentID.SelectedIndex = 0; //index of the object to be selected
             RefreshAllStudentComboBox();
 
             studentCourseDataGrid.IsReadOnly = true;
@@ -199,7 +198,6 @@ namespace PL.SimpleWPF
         {
             RefreshAllRegisteredCoursesGrid();
             RefreshAllNotRegisteredCoursesGrid();
-            //???cbStudentID.SelectedIndex = 0; //index of the object to be selected
             RefreshAllStudentComboBox();
         }
     }

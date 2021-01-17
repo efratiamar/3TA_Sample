@@ -23,6 +23,7 @@ namespace BLAPI
         void UpdateStudentPersonalDetails(BO.Student student);
 
         void DeleteStudent(int id);
+        void AddStudent(BO.Student student);
 
         #endregion
 

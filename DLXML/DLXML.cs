@@ -48,7 +48,7 @@ namespace DL
                                 HouseNumber = Int32.Parse(per.Element("HouseNumber").Value),
                                 City = per.Element("City").Value,
                                 BirthDate = DateTime.Parse(per.Element("BirthDate").Value),
-                                PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), per.Element("PersonalStatus").Value)
+                                PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), per.Element("PersonalStatus").Value)                              
                             }
                         ).FirstOrDefault();
 
@@ -103,8 +103,7 @@ namespace DL
             if (per1 != null)
                 throw new DO.BadPersonIdException(person.ID, "Duplicate person ID");
 
-            XElement personElem = new XElement("Person",
-                                   new XElement("ID", person.ID),
+             XElement personElem = new XElement("Person", new XElement("ID", person.ID),
                                    new XElement("Name", person.Name),
                                    new XElement("Street", person.Street),
                                    new XElement("HouseNumber", person.HouseNumber.ToString()),
@@ -126,8 +125,9 @@ namespace DL
                                     select p).FirstOrDefault();
             
             if (per != null)
-            {
-                per.Remove();
+            {              
+                per.Remove(); //<==>   Remove per from personsRootElem
+
                 XMLTools.SaveListToXMLElement(personsRootElem, personsPath);
             }
             else
