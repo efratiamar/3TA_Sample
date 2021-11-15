@@ -14,11 +14,11 @@ namespace DO
         public BadPersonIdException(int id, string message) :
             base(message) => ID = id;
         public BadPersonIdException(int id, string message, Exception innerException) : 
-            base(message, innerException) => ID = id;
-      
+            base(message, innerException) => ID = id;      
         public override string ToString() => base.ToString() + $", bad person id: {ID}";
     }
-
+    
+    [Serializable]
     public class BadPersonIdCourseIDException : Exception
     {
         public int personID;
@@ -28,10 +28,10 @@ namespace DO
             base(message) { personID = perID; courseID = crsID; }
         public BadPersonIdCourseIDException(int perID, int crsID, string message, Exception innerException) :
             base(message, innerException) { personID = perID; courseID = crsID; }
-
         public override string ToString() => base.ToString() + $", bad person id: {personID} and course id: {courseID}";
     }
-
+   
+    [Serializable]
     public class XMLFileLoadCreateException : Exception
     {
         public string xmlFilePath;
@@ -42,7 +42,6 @@ namespace DO
         public XMLFileLoadCreateException(string xmlPath, string message, Exception innerException) :
             base(message, innerException)
         { xmlFilePath = xmlPath;}
-
         public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
     }
 

@@ -11,7 +11,7 @@ namespace BL
 {
     class BLImp : IBL //internal
     {
-        IDL dl = DLFactory.GetDL();
+        IDL dl =   DLFactory.GetDL();
 
         #region Student
         BO.Student studentDoBoAdapter(DO.Student studentDO)
@@ -239,8 +239,6 @@ namespace BL
                                       let course = dl.GetCourse(sic.CourseId)
                                       select course.CopyToStudentCourse(sic);
         }
-
-
 
         #endregion
 
