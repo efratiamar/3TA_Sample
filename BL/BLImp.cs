@@ -4,7 +4,7 @@ using System.Linq;
 using DLAPI;
 using BLAPI;
 using System.Threading;
-using BO;
+//using BO;
 //using BO;
 
 namespace BL
@@ -144,7 +144,7 @@ namespace BL
             }
         }
 
-        public void AddStudent(Student student)
+        public void AddStudent(BO.Student student)
         {
             //Add new student  (DO.Person + DO.Student)
             //with no courses (courses will be added one by one through AddStudentInCourse()
