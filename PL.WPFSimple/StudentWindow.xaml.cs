@@ -25,6 +25,10 @@ namespace PL.SimpleWPF
 
         IBL bl;
         BO.Student curStu;
+        
+        //Fix: using observable collection instead of RefreshAllStudentComboBox();
+        ObservableCollection<BO.Student> obsColStudents;
+
         public StudentWindow(IBL _bl)
         {
             InitializeComponent();
@@ -37,28 +41,39 @@ namespace PL.SimpleWPF
 
             cbStudentID.DisplayMemberPath = "Name";//show only specific Property of object
             cbStudentID.SelectedValuePath = "ID";//selection return only specific Property of object
-            RefreshAllStudentComboBox();
+
+            //Fix: using observable collection instead of RefreshAllStudentComboBox();
+            obsColStudents = new ObservableCollection<BO.Student>(bl.GetAllStudents());
+            cbStudentID.DataContext = obsColStudents;
 
             studentCourseDataGrid.IsReadOnly = true;
             courseDataGrid.IsReadOnly = true;
-            
         }
 
-        void RefreshAllStudentComboBox()
-        {
-            cbStudentID.DataContext = bl.GetAllStudents();
-            cbStudentID.SelectedIndex = 0; //index of the object to be selected
-        }
+        //Fix: using observable collection instead of RefreshAllStudentComboBox();
+        //void RefreshAllStudentComboBox()
+        //{
+        //    cbStudentID.DataContext = bl.GetAllStudents();
+        //    cbStudentID.SelectedIndex = 0; //index of the object to be selected
+        //}
 
         void RefreshAllRegisteredCoursesGrid()
         {
-            studentCourseDataGrid.DataContext = bl.GetAllCoursesPerStudent(curStu.ID);
+            if (curStu != null)
+                studentCourseDataGrid.DataContext = bl.GetAllCoursesPerStudent(curStu.ID);
+            else
+                studentCourseDataGrid.DataContext = null;
         }
 
         void RefreshAllNotRegisteredCoursesGrid()
         {
-            List<BO.Course> listOfUnRegisteredCourses = bl.GetAllCourses().Where(c1 => bl.GetAllCoursesPerStudent(curStu.ID).All(c2 => c2.ID != c1.ID)).ToList();
-            courseDataGrid.DataContext = listOfUnRegisteredCourses;
+            if (curStu != null)
+            {
+                List<BO.Course> listOfUnRegisteredCourses = bl.GetAllCourses().Where(c1 => bl.GetAllCoursesPerStudent(curStu.ID).All(c2 => c2.ID != c1.ID)).ToList();
+                courseDataGrid.DataContext = listOfUnRegisteredCourses;
+            }
+            else
+                courseDataGrid.DataContext = null;
         }
 
         private void cbStudentID_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,13 +81,11 @@ namespace PL.SimpleWPF
             curStu = (cbStudentID.SelectedItem as BO.Student);
             gridOneStudent.DataContext = curStu;
 
-            if (curStu != null)
-            {
-                //list of courses of selected student
-                RefreshAllRegisteredCoursesGrid();
-                //list of all courses (that selected student is not registered to it)
-                RefreshAllNotRegisteredCoursesGrid();                
-            }
+            //list of courses of selected student
+            RefreshAllRegisteredCoursesGrid();
+            //list of all courses (that selected student is not registered to it)
+            RefreshAllNotRegisteredCoursesGrid();
+
         }
 
         private void btUpdateStudent_Click(object sender, RoutedEventArgs e)
@@ -84,7 +97,7 @@ namespace PL.SimpleWPF
             }
             catch (BO.BadStudentIdException ex)
             {
-                MessageBox.Show(ex.Message, "Operation Failure",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -99,13 +112,13 @@ namespace PL.SimpleWPF
                 if (curStu != null)
                 {
                     bl.DeleteStudent(curStu.ID);
-                    
-                    RefreshAllRegisteredCoursesGrid();
-                    RefreshAllNotRegisteredCoursesGrid();
-                    RefreshAllStudentComboBox();
+
+                    //Fix: using observable collection instead of RefreshAllStudentComboBox();
+                    obsColStudents.Remove(curStu);
+                    cbStudentID.SelectedIndex = 0; //index of the object to be selected, the first elem in the list after the removal
                 }
             }
-            catch(BO.BadStudentIdCourseIDException ex)
+            catch (BO.BadStudentIdCourseIDException ex)
             {
                 MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -125,8 +138,8 @@ namespace PL.SimpleWPF
 
         private void WinUpdateGrade_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            BO.StudentCourse scBO = (sender as GradeWindow).curScBO; 
-            
+            BO.StudentCourse scBO = (sender as GradeWindow).curScBO;
+
             MessageBoxResult res = MessageBox.Show("Update grade for selected student?", "Verification", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
             if (res == MessageBoxResult.No)
             {
@@ -141,9 +154,7 @@ namespace PL.SimpleWPF
             {
                 try
                 {
-                    bl.UpdateStudentGradeInCourse(curStu.ID, scBO.ID, (float)scBO.Grade);
-                    RefreshAllRegisteredCoursesGrid();
-
+                    bl.UpdateStudentGradeInCourse(curStu.ID, scBO.ID, (float)scBO.Grade);                 
                 }
                 catch (BO.BadStudentIdCourseIDException ex)
                 {
@@ -160,7 +171,7 @@ namespace PL.SimpleWPF
                 RefreshAllRegisteredCoursesGrid();
                 RefreshAllNotRegisteredCoursesGrid();
             }
-            catch(BO.BadStudentIdCourseIDException ex)
+            catch (BO.BadStudentIdCourseIDException ex)
             {
                 MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -196,9 +207,16 @@ namespace PL.SimpleWPF
 
         private void WinAddStudent_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            RefreshAllRegisteredCoursesGrid();
-            RefreshAllNotRegisteredCoursesGrid();
-            RefreshAllStudentComboBox();
+
+            BO.Student newStu = (sender as AddStudentWindow).newStu;
+            
+            //Fix: using observable collection instead of RefreshAllStudentComboBox();
+            if (newStu != null)
+            {
+                obsColStudents.Add(newStu);
+                cbStudentID.SelectedItem = newStu; //the selected item should be the new just added item
+            }
+            
         }
     }
 }

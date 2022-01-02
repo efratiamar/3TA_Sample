@@ -38,6 +38,9 @@ namespace PL.SimpleWPF
 
         private void btUpdateGrade_Click(object sender, RoutedEventArgs e)
         {
+
+            //cbGrade.Text = gradeBeforeUpdate.ToString();
+
             this.Close();
         }
     }

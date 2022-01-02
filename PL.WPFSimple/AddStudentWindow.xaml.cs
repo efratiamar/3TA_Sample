@@ -22,7 +22,7 @@ namespace PL.SimpleWPF
     public partial class AddStudentWindow : Window
     {
         IBL bl;
-        BO.Student newStu = new BO.Student();
+        public BO.Student newStu = new BO.Student();
 
 
         public AddStudentWindow(IBL _bl)
@@ -41,10 +41,13 @@ namespace PL.SimpleWPF
         {
             MessageBoxResult res = MessageBox.Show("Add student?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.No)
+            {
+                newStu = null;
                 return;
+            }
 
             //code missing:
-            //test each textbox, combobox value with more TKINIT KELET etc.
+            //test each textbox, combobox value with more TKINUT KELET etc.
             // make sure each field has value
             //if not takin shoe message box, and return.
             //else
@@ -61,6 +64,7 @@ namespace PL.SimpleWPF
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
+            newStu = null; 
             this.Close();
         }
 

@@ -15,6 +15,5 @@ namespace BO
         public StudentGraduate Graduation { get; set; }
         public IEnumerable<StudentCourse> ListOfCourses {get;set;}
         public override string ToString() => this.ToStringProperty();
-
     }
 }
